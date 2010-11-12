@@ -96,7 +96,6 @@ function set_prompt {
 }
 export PROMPT_COMMAND=set_prompt
 
-
 SHELL=`ps -ef | grep $$ | awk '{ print $8 }' | head -n1`
 
 if [ $SHELL = 'zsh' ]; then

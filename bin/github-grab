@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# Clones a Git repository from GitHub.
+# Taken from: https://github.com/rtomayko/dotfiles/blob/bd19d8a8e8a7519a8149d0fab88b699eba383b30/bin/git-grab
+
+[ $# -eq 0 ] && {
+	echo "usage: $0 username [repo]"
+}
+
+username="$1"
+
+if [ -n "$2" ] ; then
+	repo="$2"
+else
+	repo=$(basename $(pwd))
+fi
+
+command="git remote add $username git://github.com/$username/$repo.git"
+echo $command
+$command
+
+command="git fetch $username"
+echo $command
+$command
