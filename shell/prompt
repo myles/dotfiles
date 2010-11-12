@@ -92,7 +92,7 @@ function set_prompt {
     venv_name=""
   fi
 
-  export PS1="${venv_name}\h [\W/] ${git_prompt}${COLOR_NONE}\n${homebrew_prompt}\$ "
+  export PS1="${venv_name}\u@\h [\w/] ${git_prompt}${COLOR_NONE}\n${homebrew_prompt}\$ "
 }
 export PROMPT_COMMAND=set_prompt
 
