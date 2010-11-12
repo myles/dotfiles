@@ -11,8 +11,8 @@ Installation
 	cd ~/.dotfiles
 	rake install
 
-Thanks
-------
+Acknowledgement
+---------------
 
 * The rake file came from [ryanb](https://github.com/ryanb/dotfiles/blob/master/Rakefile).
 * Got some other stuff from [justinlilly](https://github.com/justinlilly/jlilly-bashy-dotfiles).
