@@ -44,7 +44,7 @@ dict() {
 exip () {
     # gather external ip address
     echo -n "Current External IP: "
-    curl -s -m 5 http://myip.dk | grep "<title>" | sed -e 's/<title>Your IP address is: //g' -e 's/<\/title>//g'
+    curl -s http://checkip.dyndns.com/ | grep "<body>" | sed -e 's/<html><head><title>Current IP Check<\/title><\/head><body>Current IP Address: //g' -e 's/<\/body><\/html>//g'
 }
 
 ips () {

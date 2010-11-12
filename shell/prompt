@@ -92,7 +92,7 @@ function set_prompt {
     venv_name=""
   fi
 
-  export PS1="${venv_name}${GREEN}\u${CYAN}@${BLUE}\h [${CYAN}\w/] ${git_prompt}${COLOR_NONE}\n${homebrew_prompt}\$ "
+  export PS1="${venv_name}${GREEN}\u${CYAN}@${BLUE}\h ${BLUE}[${CYAN}\w/${BLUE}] ${git_prompt}${COLOR_NONE}\n${homebrew_prompt}\$ "
 }
 export PROMPT_COMMAND=set_prompt
 
