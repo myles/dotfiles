@@ -22,6 +22,7 @@ alias webshare='`which python` -c "import SimpleHTTPServer;SimpleHTTPServer.test
 alias clr='clear;echo "Currently logged in on $(tty), as $(whoami) in directory $(pwd)."'
 alias pypath='python -c "import sys; print sys.path" | tr "," "\n" | grep -v "egg"'
 alias pycclean='find . -name "*.pyc" -exec rm {} \;'
+alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E 'Host\: .*|GET \/.*'"
 
 # Git Aliases
 

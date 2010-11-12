@@ -55,3 +55,12 @@ ips () {
 shell () {
     ps | grep `echo $$` | awk '{ print $4 }'
 }
+
+td() {
+	td=$TD
+	if [ ! -z "$1" ]; then
+		td="$HOME/Documents/temp/`date -d "$1 days" +'%Y-%m-%d'`";
+	fi
+	mkdir -p $td; cd $td
+	unset td
+}
