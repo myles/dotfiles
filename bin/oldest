@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+"""
+Print last-modified times of files eneath '.', oldest first.
+"""
+
+import os, os.path, time
+
+paths = ( os.path.join(b, f)
+                for (b, ds, fs) in os.walk('.')
+                for f in fs )
+
+for mtime, path in sorted( ( os.lstat(p).st_mtime, p)
+                for p in paths ):
+        print time.strftime("%Y-%m-%d", time.localtime(mtime)), path
