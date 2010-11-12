@@ -1,0 +1,17 @@
+[ui]
+username = Myles Braithwaite <me@mylesbraithwaite.com>
+ssh = ssh -C
+ignore = ~/.hgignore
+
+[pager]
+pager = LESS='FSRX' less
+quite = True
+attend = log, glob, slog, diff, qdiff, annotate
+
+[extensions]
+hgext.bookmarks = 
+color =
+hggit =
+
+[bookmarks]
+track.current = True
