@@ -5,7 +5,6 @@ set completions-ignore-case On
 for comp in \
 	~/.bin/completion/git-completion.bash \
 	~/.bin/completion/hg-completion.bash \
-	~/.bin/completion/brew-completion.bash \
 	~/.bin/completion/pip-completion.bash
 do
 	[[ -e $comp ]] && source $comp

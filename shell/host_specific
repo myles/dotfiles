@@ -32,6 +32,8 @@ case $MACHTYPE in
         alias mvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
         alias ls='`which ls` -GFp'
         alias brew-upgrade="`which brew` outdated | `which cut` -f1 | xargs `which brew` install"
+        
+        . ~/.bin/completion/brew-completion.bash
         ;;
     *)
         ;;
