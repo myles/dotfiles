@@ -96,6 +96,6 @@ function set_prompt {
 }
 export PROMPT_COMMAND=set_prompt
 
-if [ -n "$$ZSH_VERSION" ]; then
+if [ -n "$ZSH_VERSION" ]; then
     . ~/.zsh_prompt
 fi
