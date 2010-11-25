@@ -34,6 +34,10 @@ case $MACHTYPE in
         alias brew-upgrade="`which brew` outdated | `which cut` -f1 | xargs `which brew` install"
         
         . ~/.bin/completion/brew-completion.bash
+        
+        if [ -f `brew --prefix`/etc/autojump ]; then
+            . `brew --prefix`/etc/autojump
+        fi
         ;;
     *)
         ;;
