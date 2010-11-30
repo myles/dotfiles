@@ -9,6 +9,14 @@ PURPLE="\[\033[1;35m\]"
 CYAN="\[\033[1;36m\]"
 BROWN="\[\033[0;33m\]"
 COLOR_NONE="\[\033[0m\]"
+GREY="\[\033[37m\]"
+ORANGE="\[\033[33m\]"
+
+if [ `id -u` == '0' ]; then
+    COLOUR_USER=$RED
+else
+    COLOUR_USER=$PINK
+fi
 
 LIGHTNING_BOLT="⚡"
 UP_ARROW="↑"
@@ -78,8 +86,15 @@ function parse_git_branch {
         remote="${YELLOW}${UD_ARROW}"
     fi
     
-    echo "${remote}${remote_ff}${GREEN}(${branch})${COLOR_NONE}${git_is_dirty}${COLOR_NONE}"
+    if command -v vcprompt >/dev/null; then
+        echo "$(vcprompt)${COLOR_NONE}${git_is_dirty}${COLOR_NONE}"
+    else
+        echo "${remote}${remote_ff}${GREEN}(${branch})${COLOR_NONE}${git_is_dirty}${COLOR_NONE}"
+    fi
 }
+
+# vcprompt config.
+export VCPROMPT_FORMAT="${COLOR_NONE}(${CYAN}%n${COLOR_NONE}:${GREEN}%b${COLOR_NONE})"
 
 function set_prompt {
     [[ -n $HOMEBREW_DEBUG_INSTALL ]] && \
@@ -92,7 +107,8 @@ function set_prompt {
         venv_name=""
     fi
     
-    export PS1="${venv_name}${GREEN}\u${CYAN}@${BLUE}\h ${BLUE}[${CYAN}\w/${BLUE}] ${git_prompt}${COLOR_NONE}\n${homebrew_prompt}\$ "
+    export PS1="${venv_name}${GREEN}\u${CYAN}@${BLUE}\h ${BLUE}[${CYAN}\w${BLUE}] ${git_prompt}${COLOR_NONE}\n${homebrew_prompt}\$ "
+    # export PS1="${COLOUR_USER}\u ${GREY}at ${ORANGE}\h ${GREY}in ${GREEN}\w\n${homebrew_prompt}\$${COLOR_NONE} "
 }
 export PROMPT_COMMAND=set_prompt
 
