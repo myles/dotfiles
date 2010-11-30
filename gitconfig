@@ -38,3 +38,9 @@
 
 [github]
 	user = myles
+
+[url "git://github.com/"]
+	insteadOf = github://
+
+[url "ssh://git@github.com/"]
+	pushInsteadOf = github://
