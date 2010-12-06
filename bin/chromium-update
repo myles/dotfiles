@@ -1,0 +1,9 @@
+#!/bin/bash
+
+CURL=`which curl`
+LATEST_VERSION=`$CURL --silent http://build.chromium.org/f/chromium/snapshots/chromium-rel-mac/LATEST`
+mkdir /tmp/chromium-update/
+$CURL --silent "http://build.chromium.org/f/chromium/snapshots/chromium-rel-mac/$LATEST_VERSION/chrome-mac.zip" -o /tmp/chromium-update/chrome-mac.zip
+unzip -qq /tmp/chromium-update/chrome-mac.zip -d /tmp/chromium-update
+mv /tmp/chromium-update/chrome-mac/Chromium.app /Applications/Chromium.app
+rm -fr /tmp/chromium-update
