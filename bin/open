@@ -3,9 +3,9 @@
 
 case $MACHTYPE in
 	*linux*)
-		/usr/bin/gnome-open
+		/usr/bin/gnome-open $1
 		;;
 	*darwin*)
-		/usr/bin/open
+		/usr/bin/open $1
 		;;
 esac
