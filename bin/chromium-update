@@ -5,5 +5,6 @@ LATEST_VERSION=`$CURL --silent http://build.chromium.org/f/chromium/snapshots/ch
 mkdir /tmp/chromium-update/
 $CURL --silent "http://build.chromium.org/f/chromium/snapshots/chromium-rel-mac/$LATEST_VERSION/chrome-mac.zip" -o /tmp/chromium-update/chrome-mac.zip
 unzip -qq /tmp/chromium-update/chrome-mac.zip -d /tmp/chromium-update
+rm -fr /Applications/Chromium.app
 mv /tmp/chromium-update/chrome-mac/Chromium.app /Applications/Chromium.app
 rm -fr /tmp/chromium-update

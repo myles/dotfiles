@@ -1,0 +1,3 @@
+#!/bin/bash
+
+`which nc` $1 1-44444
