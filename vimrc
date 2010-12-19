@@ -11,3 +11,8 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 " Syntax Highlighting
 set background=light
 syntax enable
+
+" Markdown filetype file
+augroup markdown
+    au! BufRead,BufNewFile *.mdown setfiletype mkd
+augroup END
