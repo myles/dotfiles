@@ -15,9 +15,10 @@ case $MACHTYPE in
     *darwin*)
         # Mac OS X Specific
         export JAVA_HOME=/Library/Java/Home
-        export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r6
+        export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r8
         export PATH="$PATH:$HOME/.bin"
         export LSCOLORS='Gxfxcxdxdxegedabagacad'
+        export EDITOR='/usr/bin/mate'
         
         # Open a man page in Preview.
         pman() {
