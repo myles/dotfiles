@@ -16,3 +16,5 @@ syntax enable
 augroup markdown
     au! BufRead,BufNewFile *.mdown setfiletype mkd
 augroup END
+filetype plugin indent on
+syntax on
