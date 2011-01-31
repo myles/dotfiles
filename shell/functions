@@ -66,5 +66,5 @@ td() {
 }
 
 wikipedia() {
-    dig +short txt "$*".wp.dg.cx
+    dig +short txt ${1}.wp.dg.cx
 }
