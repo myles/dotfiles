@@ -37,7 +37,7 @@ extract () {
     fi
 }
 
-dict() {
+dict () {
     grep "$@" /usr/share/dict/words
 }
 
@@ -56,7 +56,7 @@ shell () {
     ps | grep `echo $$` | awk '{ print $4 }'
 }
 
-td() {
+td () {
 	td=$TD
 	if [ ! -z "$1" ]; then
 		td="$HOME/Documents/temp/`date -d "$1 days" +'%Y-%m-%d'`";
@@ -65,6 +65,6 @@ td() {
 	unset td
 }
 
-wikipedia() {
+wikipedia () {
     dig +short txt ${1}.wp.dg.cx
 }
