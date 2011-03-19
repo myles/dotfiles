@@ -68,3 +68,11 @@ td () {
 wikipedia () {
     dig +short txt ${1}.wp.dg.cx
 }
+
+encrypt () {
+    `which gpg` -a -c ${1}
+}
+
+decrypt () {
+    `which gpg` -d ${1}
+}
