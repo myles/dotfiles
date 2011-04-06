@@ -69,6 +69,10 @@ wikipedia () {
     dig +short txt ${1}.wp.dg.cx
 }
 
+port_scan () {
+    nmap -A -T4 ${1}
+}
+
 encrypt () {
     `which gpg` -a -c ${1}
 }
