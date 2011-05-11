@@ -55,7 +55,7 @@ exip () {
 
 ips () {
     # determine local IP address
-    ifconfig | grep "inet " | awk '{ print $2 }'
+    /sbin/ifconfig | grep "inet " | awk '{ print $2 }'
 }
 
 shell () {
