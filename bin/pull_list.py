@@ -55,7 +55,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 import re
 import sys
-import lxml
+#import lxml
 import urllib2
 from BeautifulSoup import BeautifulSoup
 
