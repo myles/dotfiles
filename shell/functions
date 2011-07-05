@@ -63,12 +63,8 @@ shell () {
 }
 
 td () {
-	td=$TD
-	if [ ! -z "$1" ]; then
-		td="$HOME/Documents/temp/`date -d "$1 days" +'%Y-%m-%d'`";
-	fi
-	mkdir -p $td; cd $td
-	unset td
+	mkdir -p "$HOME/Dropbox/Temp/`date +'%Y-%m-%d'`"
+	cd "$HOME/Dropbox/Temp/`date +'%Y-%m-%d'`"
 }
 
 wikipedia () {
