@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# This will copy a file, appending the date and time
+# to the end of the file name.
+#
+# http://c.myl.be/8BYj
+
+date_formatted=$(date +%Y-%m-%d_%H.%M%S)
+file_extension=`echo "$1"|awk -F . '{print $NF}'`
+file_name=`basename $1 .$file_extension`
+
+cp -v $1 $file_name-$date_formatted.$file_extension
