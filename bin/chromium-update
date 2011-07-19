@@ -1,10 +1,10 @@
 #!/bin/bash
 
 CURL=`which curl`
-LATEST_VERSION=`$CURL --silent http://build.chromium.org/f/chromium/snapshots/chromium-rel-mac/LATEST`
+LATEST_VERSION=`$CURL --silent http://build.chromium.org/f/chromium/snapshots/Mac/LATEST`
 mkdir /tmp/chromium-update/
 echo "Download Chromium version $LATEST_VERSION."
-$CURL --silent "http://build.chromium.org/f/chromium/snapshots/chromium-rel-mac/$LATEST_VERSION/chrome-mac.zip" -o /tmp/chromium-update/chrome-mac.zip
+$CURL --silent "http://build.chromium.org/f/chromium/snapshots/Mac/$LATEST_VERSION/chrome-mac.zip" -o /tmp/chromium-update/chrome-mac.zip
 echo "Download completed. Now extracting the zip archive."
 unzip -qq /tmp/chromium-update/chrome-mac.zip -d /tmp/chromium-update
 rm -fr /Applications/Chromium.app
