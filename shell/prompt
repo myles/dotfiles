@@ -110,7 +110,10 @@ function set_prompt {
     export PS1="${venv_name}${GREEN}\u${CYAN}@${BLUE}\h ${BLUE}[${CYAN}\w${BLUE}] ${git_prompt}${COLOR_NONE}\n${homebrew_prompt}\$ "
     # export PS1="${COLOUR_USER}\u ${GREY}at ${ORANGE}\h ${GREY}in ${GREEN}\w\n${homebrew_prompt}\$${COLOR_NONE} "
 }
-export PROMPT_COMMAND=set_prompt
+
+PROMPT_TITLE='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
+PROMPT_COMMAND=set_prompt
+export PROMPT_COMMAND="${PROMPT_COMMAND:-:} && ${PROMPT_TITLE}"
 
 if [ -n "$ZSH_VERSION" ]; then
     . ~/.zsh_prompt
