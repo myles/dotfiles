@@ -7,7 +7,8 @@ for comp in \
 	~/.bin/completion/hg-completion.bash \
 	~/.bin/completion/pip-completion.bash \
 	~/.bin/completion/git-flow-completion.bash \
-	~/.bin/completion/brew-completion.bash
+	~/.bin/completion/brew-completion.bash \
+	~/.bin/completion/todo-completion.bash
 do
 	[[ -e $comp ]] && source $comp
 done
