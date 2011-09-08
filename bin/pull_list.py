@@ -55,7 +55,6 @@ POSSIBILITY OF SUCH DAMAGE.
 
 import re
 import sys
-#import lxml
 import urllib2
 from BeautifulSoup import BeautifulSoup
 
@@ -99,7 +98,13 @@ def get_pull_items(soup):
 		except AttributeError:
 			price = None
 		description = comic.find('div', attrs={'id': 'description'}).find('div', attrs={'class': 'body'}).text.strip('(more)')
-		print "%s\t%s\n\t%s%s\n" % (title, price, description, link)
+		template = """%(title)s - %(price)s\n\t%(description)s\n%(link)s\n"""
+		print template % {
+			'title': title,
+			'link': link,
+			'price': price,
+			'description': description
+		}
 
 def main(url):
 	if not url.startswith('http://'):
