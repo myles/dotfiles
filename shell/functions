@@ -76,9 +76,17 @@ port_scan () {
 }
 
 encrypt () {
-    `which gpg` -a -c ${1}
+  `which openssl` bf -a -in "${1}"
 }
 
 decrypt () {
+  `which openssl` bf -d -a -in "${1}"
+}
+
+old_encrypt () {
+    `which gpg` -a -c ${1}
+}
+
+old_decrypt () {
     `which gpg` -d ${1}
 }
