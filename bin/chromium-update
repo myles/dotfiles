@@ -1,10 +1,11 @@
 #!/bin/bash
 
 CURL=`which curl`
-LATEST_VERSION=`$CURL --silent http://build.chromium.org/f/chromium/snapshots/Mac/LATEST`
+WGET=`which wget`
+LATEST_VERSION=`$CURL --silent http://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac/LAST_CHANGE`
 mkdir /tmp/chromium-update/
 echo "Download Chromium version $LATEST_VERSION."
-$CURL --silent "http://build.chromium.org/f/chromium/snapshots/Mac/$LATEST_VERSION/chrome-mac.zip" -o /tmp/chromium-update/chrome-mac.zip
+$WGET -q --output-document=/tmp/chromium-update/chrome-mac.zip --output-file=/tmp/chromium-update/download.log "http://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac/$LATEST_VERSION/chrome-mac.zip"
 echo "Download completed. Now extracting the zip archive."
 unzip -qq /tmp/chromium-update/chrome-mac.zip -d /tmp/chromium-update
 rm -fr /Applications/Chromium.app
