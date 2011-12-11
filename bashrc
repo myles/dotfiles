@@ -6,8 +6,8 @@
 . ~/.shell/prompt
 
 # Run on new shell
-if [ `which fortune` ]; then
-    echo ""
-    fortune
-    echo ""
-fi
+#if [ `which fortune` ]; then
+#    echo ""
+#    fortune
+#    echo ""
+#fi
