@@ -1,6 +1,3 @@
 [submodule "vim"]
 	path = vim
 	url = git://github.com/carlhuda/janus.git
-[submodule "todo-txt"]
-	path = todo-txt
-	url = https://github.com/ginatrapani/todo.txt-cli.git
