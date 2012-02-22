@@ -17,6 +17,14 @@ set showcmd                     "Show incomplete cmds down the bottom
 set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
 
+if has('gui_running')
+  set background=light
+else
+  set background=dark
+endif
+colorscheme solarized
+let g:solarized_termcolors=256
+
 set autoread                    "Reload files changed outside vim
 
 " This makes vim act like all other editors, buffers can

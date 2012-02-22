@@ -1,0 +1,27 @@
+[submodule "vim/bundle/vim-colors-solarized"]
+	path = vim/bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/nerdtree-tabs"]
+	path = vim/bundle/nerdtree-tabs
+	url = git://github.com/jistr/vim-nerdtree-tabs.git
+[submodule "vim/bundle/fugitive"]
+	path = vim/bundle/fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "vim/bundle/colors-github"]
+	path = vim/bundle/colors-github
+	url = git://github.com/telamon/vim-color-github.git
+[submodule "vim/bundle/coffee-script"]
+	path = vim/bundle/coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/bundle/csv.vim"]
+	path = vim/bundle/csv.vim
+	url = git://github.com/vim-scripts/csv.vim.git
+[submodule "vim/bundle/javascript"]
+	path = vim/bundle/javascript
+	url = git://github.com/pangloss/vim-javascript.git
+[submodule "vim/bundle/markdown"]
+	path = vim/bundle/markdown
+	url = git://github.com/tpope/vim-markdown.git
