@@ -62,9 +62,11 @@ shell () {
     ps | grep `echo $$` | awk '{ print $4 }'
 }
 
+export TD="$HOME/Dropbox/Temp/`date +'%Y-%m-%d'`"
+
 td () {
-	mkdir -p "$HOME/Dropbox/Temp/`date +'%Y-%m-%d'`"
-	cd "$HOME/Dropbox/Temp/`date +'%Y-%m-%d'`"
+	mkdir -p $TD
+	cd $TD
 }
 
 wikipedia () {
@@ -81,12 +83,4 @@ encrypt () {
 
 decrypt () {
   `which openssl` bf -d -a -in "${1}"
-}
-
-old_encrypt () {
-    `which gpg` -a -c ${1}
-}
-
-old_decrypt () {
-    `which gpg` -d ${1}
 }
