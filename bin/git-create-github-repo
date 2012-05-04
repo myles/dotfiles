@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Found: <https://gist.github.com/2592462>
+
+read -s -p "GitHub username: " username
+read -s -p "GitHub password: " password
+# I assume the GitHub API and authentication works because I don't want
+# to parse JSON
+curl \
+  -u "$username:$password" \
+  https://api.github.com/user/repos \
+  -d "{\"name\":\"$1\"}" > /dev/null
+git remote add origin git@github.com:$username/$1.git
