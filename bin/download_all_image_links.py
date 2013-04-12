@@ -93,6 +93,7 @@ def main(url, output_path):
 	images = get_links(html)
 	
 	for img in images:
+		log.info("Downloading %s", img)
 		download_image(url, img, output_path)
 
 if __name__ == "__main__":
