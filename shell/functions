@@ -84,3 +84,13 @@ encrypt () {
 decrypt () {
   `which openssl` bf -d -a -in "${1}"
 }
+
+# stelnet: http://christianiversen.dk/2013/06/do-you-speak-crypto/
+function stelnet() {
+  if [ -z "$2" ]
+  then
+    echo "usage: $0 <host> <port>"
+  else
+    openssl s_client -quiet -connect $1:$2
+  fi
+}
