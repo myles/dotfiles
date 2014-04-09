@@ -1,17 +1,28 @@
 export PATH=$HOME/.bin:$PATH
 
-if [ -d ~/.bin-private ]; then
+if [ -d $HOME/.bin-private ]; then
     export PATH=$HOME/.bin-private:$PATH
 fi
 
-if [ -d ~/.bin-local ]; then
+if [ -d $HOME/.bin-local ]; then
     export PATH=$HOME/.bin-local:$PATH
 fi
 
+export GOPATH=$HOME/.gocode
+
+if [ -d $GOPATH/bin ]; then
+	export PATH=$GOPATH/bin:$PATH
+fi
+
+export GPGKEY="5A2FE7BF"
+
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;31'
+
 export LESS="-R"
+
 export OOO_FORCE_DESKTOP=gnome  # For OpenOffice to look more gtk-friendly.
+
 export BROWSER=google-chrome
 
 RED="\[\033[0;31m\]"

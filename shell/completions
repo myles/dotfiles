@@ -3,12 +3,12 @@ return
 set completions-ignore-case On
 
 for comp in \
-	~/.bin/completion/git-completion.bash \
-	~/.bin/completion/hg-completion.bash \
-	~/.bin/completion/pip-completion.bash \
-	~/.bin/completion/git-flow-completion.bash \
-	~/.bin/completion/brew-completion.bash \
-	~/.bin/completion/todo-completion.bash
+	$HOME/.bin/completion/git-completion.bash \
+	$HOME/.bin/completion/hg-completion.bash \
+	$HOME/.bin/completion/pip-completion.bash \
+	$HOME/.bin/completion/git-flow-completion.bash \
+	$HOME/.bin/completion/brew-completion.bash \
+	$HOME/.bin/completion/todo-completion.bash
 do
 	[[ -e $comp ]] && source $comp
 done

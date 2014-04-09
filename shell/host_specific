@@ -19,8 +19,9 @@ case $MACHTYPE in
         export PATH="$PATH:$HOME/.bin:/usr/local/git/bin:/usr/local/heroku/bin"
         export LSCOLORS='Gxfxcxdxdxegedabagacad'
         export EDITOR='vim'
-		export ONEPASSWORD_KEYCHAIN=/Users/myles/Dropbox/1Password/1Password.agilekeychain
-        
+        export ONEPASSWORD_KEYCHAIN=$HOME/Dropbox/1Password/1Password.agilekeychain
+        [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
         # Open a man page in Preview.
         pman() {
         	man -t "${1}" | open -f -a /Applications/Preview.app
@@ -35,7 +36,7 @@ case $MACHTYPE in
         alias ls='`which ls` -GFp'
         alias brew-upgrade="`which brew` outdated | `which cut` -f1 | xargs `which brew` install"
         
-        . ~/.bin/completion/brew-completion.bash
+        . $HOME/.bin/completion/brew-completion.bash
         
         # if [ -f `brew --prefix`/etc/autojump ]; then
         #     . `brew --prefix`/etc/autojump
