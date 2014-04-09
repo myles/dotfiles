@@ -2,3 +2,5 @@
 
 # Automatically generated setup files.
 gitconfig
+hgrc
+npmrc
