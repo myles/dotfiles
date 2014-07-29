@@ -1,10 +1,12 @@
 [core]
-	excludesfile = <%= ENV['HOME'] %>/.gitignore
+	excludesfile = /Users/myles/.gitignore
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	attributesfile = /Users/myles/.gitattributes
 
 [user]
-	name = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
-	email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
+	name = Myles Braithwaite
+	email = me@mylesbraithwaite.com
+	signingkey = 5A2FE7BF
 
 [color]
 	ui = auto
@@ -37,11 +39,17 @@
 	top-commits = shortlog -s -n --no-merges
 
 [github]
-	user = <%= print("GitHub Username: "); STDOUT.flush; STDIN.gets.chomp %>
-	token = <%= print("GitHub API Token: "); STDOUT.flush; STDIN.gets.chomp %>
+	user = myles
+	token = be1fbd6617c33c57f904a546ec5df6eefd6cb1cb
 
 [url "git://github.com/"]
 	insteadOf = github://
 
 [url "ssh://git@github.com/"]
 	pushInsteadOf = github://
+
+[push]
+	default = simple
+[filter "dropoutput_ipynb"]
+	clean = /Users/myles/.bin/ipynb_output_filter.py
+	smudge = cat
