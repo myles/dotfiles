@@ -53,3 +53,7 @@
 [filter "dropoutput_ipynb"]
 	clean = /Users/myles/.bin/ipynb_output_filter.py
 	smudge = cat
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true

@@ -1,97 +1,155 @@
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+" Leader
+let mapleader = " "
 
-" =============== Pathogen Initialization ===============
-" This loads all the plugins in ~/.vim/bundle
-
-call pathogen#infect()
-call pathogen#helptags()
-
-" ================ General Config ====================
-
-set number                      "Line numbers are good
-set backspace=indent,eol,start  "Allow backspace in insert mode
-set history=1000                "Store lots of :cmdline history
-set showcmd                     "Show incomplete cmds down the bottom
-set showmode                    "Show current mode down the bottom
-set gcr=a:blinkon0              "Disable cursor blink
-
-if has('gui_running')
-  set background=light
-else
-  set background=dark
-endif
-colorscheme solarized
-let g:solarized_termcolors=256
-
-set autoread                    "Reload files changed outside vim
-
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
-set hidden
-
-"turn on syntax highlighting
-syntax on
-
-" ================ Search Settings  =================
-
-set incsearch        "Find the next match as we type the search
-set hlsearch         "Hilight searches by default
-set viminfo='100,f1  "Save up to 100 marks, enable capital marks
-
-" ================ Turn Off Swap Files ==============
-
-set noswapfile
+set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
-set nowb
+set nowritebackup
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set history=50
+set ruler         " show the cursor position all the time
+set showcmd       " display incomplete commands
+set incsearch     " do incremental searching
+set laststatus=2  " Always display the status line
+set autowrite     " Automatically :write before running commands
 
-" ================ Persistent Undo ==================
-" Keep undo history across sessions, by storing in file.
-" Only works in MacVim (gui) mode.
-
-if has('gui_running')
-  set undodir=~/.vim/backups
-  set undofile
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+  syntax on
 endif
 
-" ================ Indentation ======================
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
 
-set autoindent
-set smartindent
-set smarttab
-set shiftwidth=2
-set softtabstop=2
+filetype plugin indent on
+
+augroup vimrcEx
+  autocmd!
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it for commit messages, when the position is invalid, or when
+  " inside an event handler (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  " Set syntax highlighting for specific file types
+  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+
+  " Enable spellchecking for Markdown
+  autocmd FileType markdown setlocal spell
+
+  " Automatically wrap at 80 characters for Markdown
+  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+
+  " Automatically wrap at 72 characters and spell check git commit messages
+  autocmd FileType gitcommit setlocal textwidth=72
+  autocmd FileType gitcommit setlocal spell
+
+  " Allow stylesheets to autocomplete hyphenated words
+  autocmd FileType css,scss,sass setlocal iskeyword+=-
+augroup END
+
+" Softtabs, 2 spaces
 set tabstop=2
+set shiftwidth=2
+set shiftround
 set expandtab
 
-filetype plugin on
-filetype indent on
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
 
-" Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
 
-set nowrap       "Don't wrap lines
-set linebreak    "Wrap lines at convenient points
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
-" ================ Folds ============================
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
+" Color scheme
+colorscheme github
+highlight NonText guibg=#060606
+highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
-" ================ Completion =======================
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1
 
-set wildmode=list:longest
-set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-set wildignore+=*vim/backups*
+" Numbers
+set number
+set numberwidth=5
 
-"
+" Tab completion
+" will insert tab at beginning of line,
+" will use completion if not at beginning
+set wildmode=list:longest,list:full
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <S-Tab> <c-n>
 
-" ================ Scrolling ========================
+" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
+let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
-set sidescrolloff=15
-set sidescroll=1
+" Index ctags from any project, including those outside Rails
+map <Leader>ct :!ctags -R .<CR>
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" vim-rspec mappings
+nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader>l :call RunLastSpec()<CR>
+
+" Run commands that require an interactive shell
+nnoremap <Leader>r :RunInInteractiveShell<space>
+
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" configure syntastic syntax checking to check on open as well as save
+let g:syntastic_check_on_open=1
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+
+" Set spellfile to location that is guaranteed to exist, can be symlinked to
+" Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
+set spellfile=$HOME/.vim-spell-en.utf-8.add
+
+" Always use vertical diffs
+set diffopt+=vertical
+
+" Local config
+if filereadable($HOME . "/.vimrc.local")
+  source ~/.vimrc.local
+endif
