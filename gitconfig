@@ -1,7 +1,7 @@
 [core]
-	excludesfile = /Users/myles/.gitignore
+	excludesfile = ~/.gitignore
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	attributesfile = /Users/myles/.gitattributes
+	attributesfile = ~/.gitattributes
 
 [user]
 	name = Myles Braithwaite
@@ -38,10 +38,6 @@
 	serve = daemon --reuseaddr --base-path=. --export-all --verbose
 	top-commits = shortlog -s -n --no-merges
 
-[github]
-	user = myles
-	token = be1fbd6617c33c57f904a546ec5df6eefd6cb1cb
-
 [url "git://github.com/"]
 	insteadOf = github://
 
@@ -50,9 +46,11 @@
 
 [push]
 	default = simple
+
 [filter "dropoutput_ipynb"]
 	clean = /Users/myles/.bin/ipynb_output_filter.py
 	smudge = cat
+
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f

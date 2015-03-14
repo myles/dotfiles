@@ -1,7 +1,7 @@
 [ui]
-username = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %> <<%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>>
+username = Myles Braithwaite <me@mylesbraithwaite.com>
 ssh = ssh -C
-ignore = <%= ENV['HOME'] %>/.hgignore
+ignore = ~/.hgignore
 
 [pager]
 pager = LESS='FSRX' less
