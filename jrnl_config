@@ -1,0 +1,19 @@
+{
+  "default_hour": 9,
+  "linewrap": 79,
+  "encrypt": false,
+  "default_minute": 0,
+  "tagsymbols": "@",
+  "editor": "mate -w",
+  "timeformat": "%Y-%m-%d %H:%M",
+  "highlight": true,
+  "journals": {
+    "default": "~/Dropbox/Apps/Day One/Journal.dayone",
+    "me": "~/BTSync/Journals/journal.txt",
+    "work": "~/BTSync/Journals/work.txt",
+    "pvt": {
+      "journal": "~/BTSync/Journals/pvt.txt",
+      "encrypt": true
+    }
+  }
+}
