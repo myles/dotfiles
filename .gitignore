@@ -1,3 +1,4 @@
 !bin
 vim/bundle/
 ipython/profile_default/security/
+ipython/profile_default/history.sqlite
