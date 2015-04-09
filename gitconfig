@@ -44,9 +44,6 @@
 [url "ssh://git@github.com/"]
 	pushInsteadOf = github://
 
-[push]
-	default = simple
-
 [filter "dropoutput_ipynb"]
 	clean = /Users/myles/.bin/ipynb_output_filter.py
 	smudge = cat

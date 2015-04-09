@@ -11,3 +11,10 @@
 #    fortune
 #    echo ""
 #fi
+
+PERL_MB_OPT="--install_base \"/Users/Myles/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/Myles/perl5"; export PERL_MM_OPT;
+
+
+source ~/.xsh
+
