@@ -27,7 +27,3 @@ if [ -e have_fortune ]; then
 	fortune
 	echo ""
 fi
-
-
-source ~/.xsh
-

@@ -19,10 +19,10 @@ case $MACHTYPE in
         export PATH="$PATH:$HOME/.bin:/usr/local/git/bin:/usr/local/heroku/bin"
         export LSCOLORS='Gxfxcxdxdxegedabagacad'
         export EDITOR='vim'
-		export PYTHONPATH="/Library/Python/2.7/site-packages/:$PYTHONPATH"
+        export PYTHONPATH="/Library/Python/2.7/site-packages/:$PYTHONPATH"
         export ONEPASSWORD_KEYCHAIN=$HOME/Dropbox/1Password/1Password.agilekeychain
         [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
+        
         # Open a man page in Preview.
         pman() {
         	man -t "${1}" | open -f -a /Applications/Preview.app

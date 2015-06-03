@@ -11,7 +11,3 @@ fi
 if [ -f $HOME/.bash_private ]; then
     . $HOME/.bash_private
 fi
-
-
-source ~/.xsh
-

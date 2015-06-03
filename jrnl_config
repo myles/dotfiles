@@ -8,7 +8,7 @@
   "timeformat": "%Y-%m-%d %H:%M",
   "highlight": true,
   "journals": {
-    "default": "~/Dropbox/Apps/Day One/Journal.dayone",
+    "default": "~/Library/Group Containers/5U8NS4GX82.dayoneapp/Data/Documents/Journal.dayone/",
     "me": "~/BTSync/Journals/journal.txt",
     "work": "~/BTSync/Journals/work.txt",
     "pvt": {

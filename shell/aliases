@@ -23,6 +23,4 @@ alias pypath='python -c "import sys; print sys.path" | tr "," "\n" | grep -v "eg
 alias pycclean='find . -name "*.pyc" -exec rm {} \;'
 alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E 'Host\: .*|GET \/.*'"
 
-# Git Aliases
-
-# Hg Alias
+alias fuck='$(thefuck $(fc -ln -1))'
