@@ -33,6 +33,8 @@ export OOO_FORCE_DESKTOP=gnome  # For OpenOffice to look more gtk-friendly.
 
 export BROWSER=google-chrome
 
+export BC_ENV_ARGS=$HOME/.bcrc
+
 RED="\[\033[0;31m\]"
 PINK="\[\033[1;31m\]"
 YELLOW="\[\033[1;33m\]"
