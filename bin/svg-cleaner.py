@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 A simple application that cleans up SVG files exported from
 Affinity Designer[1] so they are easier to style with CSS and SVGInjector[2].
