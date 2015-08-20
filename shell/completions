@@ -9,7 +9,7 @@ for comp in \
 	$HOME/.bin/completion/git-flow-completion.bash \
 	$HOME/.bin/completion/brew-completion.bash \
 	$HOME/.bin/completion/todo-completion.bash \
-  $HOME/.bin/completion/t-completion.sh
+	$HOME/.bin/completion/t-completion.sh
 do
 	[[ -e $comp ]] && source $comp
 done

@@ -22,6 +22,16 @@ if [ -d /usr/local/mysql/bin/ ]; then
   export PATH=$PATH:/usr/local/mysql/bin
 fi
 
+# if [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]; then
+#   source "$HOME/.scm_breeze/scm_breeze.sh"
+# fi
+
+if [ -s "/usr/local/bin/virtualenvwrapper.sh" ]; then
+	export WORKON_HOME=$HOME/.virtualenvs
+	export PROJECT_HOME=$HOME/WebSites:$HOME/Projects
+	source /usr/local/bin/virtualenvwrapper.sh
+fi
+
 export GPGKEY="5A2FE7BF"
 
 export GREP_OPTIONS='--color=auto'

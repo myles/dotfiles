@@ -32,6 +32,8 @@ Plugin 'vim-scripts/tComment'
 Plugin 'davidoc/taskpaper.vim'
 Plugin 'mklabs/grunt.vim'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'rodjek/vim-puppet'
+Plugin 'mhartington/oceanic-next'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
