@@ -9,7 +9,7 @@
 	signingkey = 5A2FE7BF
 
 [color]
-	ui = auto
+	ui = true
 
 [color "branch"]
 	current = yellow reverse
