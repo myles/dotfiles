@@ -94,9 +94,3 @@ function stelnet() {
     openssl s_client -quiet -connect $1:$2
   fi
 }
-
-# http-static-code: http://th.adde.us/2013/08/http-status-codes/
-function http() {
-  curl http://httpcode.info/$1;
-}
-
