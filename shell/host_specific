@@ -15,7 +15,7 @@ case $MACHTYPE in
     *darwin*)
         # Mac OS X Specific
         export BYOBU_PREFIX=$(brew --prefix)
-		export JAVA_HOME=/Library/Java/Home
+        export JAVA_HOME=/Library/Java/Home
         export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r8
         export PATH="$PATH:$HOME/.bin:/usr/local/git/bin:/usr/local/heroku/bin:/usr/local/bin:/usr/local/sbin"
         export LSCOLORS='Gxfxcxdxdxegedabagacad'
