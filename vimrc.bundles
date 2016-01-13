@@ -35,6 +35,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'rodjek/vim-puppet'
 Plugin 'mhartington/oceanic-next'
 Plugin 'gilgigilgil/anderson.vim'
+Plugin 'bling/vim-airline'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
