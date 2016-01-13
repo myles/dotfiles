@@ -8,6 +8,10 @@ if [ -d $HOME/.bin-local ]; then
   export PATH=$HOME/.bin-local:$PATH
 fi
 
+if [ -d $HOME/.rvm/bin ]; then
+  source $HOME/.rvm/scripts/rvm
+fi
+
 export GOPATH=$HOME/.gocode
 
 if [ -d $GOPATH/bin ]; then

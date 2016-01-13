@@ -52,8 +52,6 @@
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
-[push]
-	default = simple
 [http]
 	sslVerify = false
 [filter "lfs"]

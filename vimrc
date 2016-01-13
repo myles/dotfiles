@@ -155,6 +155,10 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 " Always use vertical diffs
 set diffopt+=vertical
 
+" Add a red line at 80 columns
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
