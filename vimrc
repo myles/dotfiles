@@ -4,7 +4,7 @@ let mapleader = " "
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set noswapfile    " http://myl.be/16
 set history=50
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
@@ -28,8 +28,8 @@ augroup vimrcEx
   autocmd!
 
   " When editing a file, always jump to the last known cursor position.
-  " Don't do it for commit messages, when the position is invalid, or when
-  " inside an event handler (happens when dropping a file on gvim).
+  " Don't do it for commit messages, when the position is invalid, or
+  " when inside an event handler (happens when dropping a file on gvim).
   autocmd BufReadPost *
     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
@@ -45,7 +45,8 @@ augroup vimrcEx
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 
-  " Automatically wrap at 72 characters and spell check git commit messages
+  " Automatically wrap at 72 characters and spell check git commit
+  " messages
   autocmd FileType gitcommit setlocal textwidth=72
   autocmd FileType gitcommit setlocal spell
 
