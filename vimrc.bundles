@@ -36,6 +36,8 @@ Plugin 'rodjek/vim-puppet'
 Plugin 'mhartington/oceanic-next'
 Plugin 'gilgigilgil/anderson.vim'
 Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'majutsushi/tagbar'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local

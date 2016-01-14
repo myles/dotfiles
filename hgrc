@@ -9,9 +9,10 @@ quite = True
 attend = log, glob, slog, diff, qdiff, annotate
 
 [extensions]
-hgext.bookmarks = 
+hgext.bookmarks =
 color =
 hggit =
 
 [bookmarks]
 track.current = True
+
