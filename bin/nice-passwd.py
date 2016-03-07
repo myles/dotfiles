@@ -9,8 +9,9 @@
 ## Revision 1.2 
 ## ChangeLog: 
 ## 1.1 - fixed typos 
-## 1.2 - renamed functions _apart & _npart to a_part & n_part as zope does not allow functions to 
-## start with _
+## 1.2 - renamed functions _apart & _npart to a_part & n_part as zope does not
+## allow functions to start with _
+## 1.3 - uppercase the vowels.
 
 import string
 import random
