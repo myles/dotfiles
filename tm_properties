@@ -1,2 +1,8 @@
+exclude = "{$exclude,*.{o,pyc},Icon\r,CVS,_darcs,_MTN,\{arch\},blib,*~.nib}"
+include = "{$include,.tm_properties,.htaccess,.gitignore}"
+
 TM_FULLNAME = "Myles Braithwaite"
 TM_ORGANIZATION = "Monkey in your Soul"
+
+[ *.{icns,ico,jpg,jpeg,m4v,nib,pdf,png,psd,pyc,rtf,tif,tiff,xib} ]
+binary = true

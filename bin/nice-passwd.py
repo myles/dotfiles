@@ -20,7 +20,7 @@ def nicepass(alpha=6, numeric=2):
 	returns a human-readble password (say rol86din instead of 
 	a difficult to remember K8Yn9muL ) 
 	"""
-	vowels = ['a','e','i','o','u']
+	vowels = ['A', 'E', 'I', 'O', 'U']
 	consonants = [a for a in string.ascii_lowercase if a not in vowels]
 	digits = string.digits
 	

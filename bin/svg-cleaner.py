@@ -58,7 +58,7 @@ def main(svg_file):
         element_id = child.attrib.get('id', False)
 
         if element_id:
-            element_class = slugify(element_id, to_lower=True)
+            element_class = slugify(element_id)
 
             child.set('class', element_class)
 
