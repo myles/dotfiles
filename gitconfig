@@ -2,11 +2,12 @@
 	excludesfile = /Users/Myles/.gitignore
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	attributesfile = ~/.gitattributes
+	quotepath = false
 
 [user]
 	name = Myles Braithwaite
 	email = me@mylesbraithwaite.com
-	signingkey = 5A2FE7BF
+	signingkey = 0x5B423590
 
 [color]
 	ui = true
@@ -64,3 +65,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[push]
+	default = simple
