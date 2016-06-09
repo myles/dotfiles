@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/Myles/.gitignore
+	excludesfile = ~/.gitignore
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	attributesfile = ~/.gitattributes
 	quotepath = false
@@ -30,14 +30,31 @@
 	untracked = cyan
 
 [alias]
-	a = commit --ammend
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-	ci = commit
-	pick = cherry-pick -s
-	sb = status -sb
-	log1 = log --pretty=oneline --abbrev-commit
-	serve = daemon --reuseaddr --base-path=. --export-all --verbose
-	top-commits = shortlog -s -n --no-merges
+  ci = commit
+  cia = commit -a
+  cam = commit --amend
+  cama = commit --amend -a
+
+  cl = clean
+  cldf = clean -df
+
+  res = reset
+  resa = reset HEAD
+
+  branches = branch -a
+  tags = tag
+  stashes = stash list
+
+  unstage = reset -q HEAD --
+  discard = checkout --
+  uncommit = reset --mixed HEAD~
+  amend = commit --amend
+
+  nevermind = !git reset --hard HEAD && git clean -d -f
+
+  graph = log --graph -10 --branches --remotes --tags --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+
+  precommit = diff --cached --diff-algorithm=minimal -w
 
 [url "git://github.com/"]
 	insteadOf = github://
@@ -61,7 +78,7 @@
 	required = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true

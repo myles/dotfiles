@@ -40,7 +40,12 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/Conque-Shell'
-Bundle 'wakatime/vim-wakatime'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'junegunn/goyo.vim'
+Plugin 'amix/vim-zenroom2'
+Plugin 'junegunn/limelight.vim'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
