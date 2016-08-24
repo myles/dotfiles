@@ -23,11 +23,11 @@ if [ -d /usr/local/Frameworks/Python.framework/Versions/Current/bin ]; then
 fi
 
 if [ -d /usr/local/Frameworks/Python.framework/Versions/2.7/bin ]; then
-  export PATH=/usr/local/Frameworks/Python.framework/Versions/Current/bin:$PATH
+  export PATH=/usr/local/Frameworks/Python.framework/Versions/2.7/bin:$PATH
 fi
 
 if [ -d /usr/local/Frameworks/Python.framework/Versions/3.5/bin ]; then
-  export PATH=/usr/local/Frameworks/Python.framework/Versions/Current/bin:$PATH
+  export PATH=/usr/local/Frameworks/Python.framework/Versions/3.5/bin:$PATH
 fi
 
 if [ -d /usr/local/opt/go/libexec/bin ]; then
@@ -36,6 +36,14 @@ fi
 
 if [ -d /usr/local/mysql/bin/ ]; then
   export PATH=$PATH:/usr/local/mysql/bin
+fi
+
+if [ -d /usr/local/opt/android-sdk ]; then
+  export ANDROID_HOME=/usr/local/opt/android-sdk
+fi
+
+if [ -d /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/ ]; then
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/
 fi
 
 # if [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]; then
