@@ -5,16 +5,16 @@ from pprint import pprint
 
 import json
 
+
 def main(*args):
     if args:
-	content = file(args[0]).read()
+        content = file(args[0]).read()
     else:
-	content = sys.stdin.read()
-    
+        content = sys.stdin.read()
+
     struct = json.loads(content)
-    
+
     pprint(struct)
 
 if __name__ == "__main__":
     sys.exit(main(*sys.argv[1:]))
-

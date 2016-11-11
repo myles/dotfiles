@@ -3,12 +3,16 @@
 Print last-modified times of files eneath '.', oldest first.
 """
 
-import os, os.path, time
+from os.path import join
+from os import walk, lstat
+from time import strftime, localtime
 
-paths = ( os.path.join(b, f)
-                for (b, ds, fs) in os.walk('.')
-                for f in fs )
 
-for mtime, path in sorted( ( os.lstat(p).st_mtime, p)
-                for p in paths ):
-        print time.strftime("%Y-%m-%d", time.localtime(mtime)), path
+paths = []
+
+for (b, ds, fs) in walk('.'):
+    for f in fs:
+        paths.append(join(b, f))
+
+for mtime, path in sorted((lstat(p).st_mtime, p) for p in paths):
+    print strftime("%Y-%m-%d", localtime(mtime)), path

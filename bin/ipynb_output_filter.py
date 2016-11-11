@@ -7,13 +7,12 @@ from IPython.nbformat.current import read, write
 json_in = read(sys.stdin, 'json')
 
 for sheet in json_in.worksheets:
-  for cell in sheet.cell:
+    for cell in sheet.cell:
 
-    if "outputs" in cell:
-      cell.outputs = []
+        if "outputs" in cell:
+            cell.outputs = []
 
-    if "prompt_number" in cell:
-      cell.prompt_number = ''
+        if "prompt_number" in cell:
+            cell.prompt_number = ''
 
 write(json_in, sys.stdout, 'json')
-

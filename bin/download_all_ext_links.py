@@ -54,50 +54,54 @@ __project_link__ = 'http://gist.github.com/'
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger()
 
+
 def get_html(url):
-	request = urllib2.Request(url)
-	request.add_header('User-Agent', '%s/%s +%s' % (
-		__project_name__, __version__, __project_link__
-	))
-	opener = urllib2.build_opener()
-	return opener.open(request).read()
+    request = urllib2.Request(url)
+    request.add_header('User-Agent', '%s/%s +%s' % (__project_name__,
+                                                    __version__,
+                                                    __project_link__))
+    opener = urllib2.build_opener()
+    return opener.open(request).read()
+
 
 def get_links(html, extensions):
-	soup = BeautifulSoup(html, parseOnlyThese=a_links)
-	
-	links = soup.findAll('a', href=True)
-	
-	downloads = []
-	
-	for link in links:
-		if link['href'].lower().endswith(extensions):
-			downloads += [ link['href'], ]
-	
-	return downloads
+    soup = BeautifulSoup(html, parseOnlyThese=a_links)
+
+    links = soup.findAll('a', href=True)
+
+    downloads = []
+
+    for link in links:
+        if link['href'].lower().endswith(extensions):
+            downloads.append(link['href'])
+
+    return downloads
+
 
 def download_link(page_url, download_url, output_path):
-	url = urlparse.urljoin(page_url, download_url)
-	log.info("Downloading %s", url)
-	filename = url.split("/")[-1]
-	outpath = os.path.join(output_path, filename)
-	urllib.urlretrieve(url, outpath)
+    url = urlparse.urljoin(page_url, download_url)
+    log.info("Downloading %s", url)
+    filename = url.split("/")[-1]
+    outpath = os.path.join(output_path, filename)
+    urllib.urlretrieve(url, outpath)
+
 
 def main(url, output_path, extensions):
-	exts = tuple(extensions.split(','))
+    exts = tuple(extensions.split(','))
 
-	html = get_html(url)
-	downloads = get_links(html, exts)
-	
-	for download in downloads:
-		log.info("Downloading %s", download)
-		download_link(url, download, output_path)
+    html = get_html(url)
+    downloads = get_links(html, exts)
+
+    for download in downloads:
+        log.info("Downloading %s", download)
+        download_link(url, download, output_path)
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser()
-	parser.add_argument('--url', dest='url', action='store', required=True)
-	parser.add_argument('--ext', dest='ext', action='store', required=True)
-	parser.add_argument('--dir', dest='dir', action='store', required=True)
-	
-	args = parser.parse_args()
-	
-	main(args.url, os.path.abspath(args.dir), args.ext)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--url', dest='url', action='store', required=True)
+    parser.add_argument('--ext', dest='ext', action='store', required=True)
+    parser.add_argument('--dir', dest='dir', action='store', required=True)
+
+    args = parser.parse_args()
+
+    main(args.url, os.path.abspath(args.dir), args.ext)
