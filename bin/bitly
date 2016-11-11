@@ -9,48 +9,51 @@ from urllib import urlencode
 import httplib2
 
 try:
-	import json
+    import json
 except ImportError:
-	import simplejson as json
+    import simplejson as json
+
 
 def create_shorturl(url, login, api_key, ailas=None):
-	http = httplib2.Http()
-	data = dict(version="2.0.1", longUrl=url, login=login,
-		apiKey=api_key)
-	
-	resp, content = http.request("http://api.bit.ly/shorten?%s" %
-		urlencode(data), "GET")
-	
-	info = json.loads(content)
-	
-	if info['statusCode'] == 'OK':
-		print "%s <- %s" % (info['results'][url]['shortUrl'], url)
-	elif info['statusCode'] == 'ERROR':
-		print "[%s] %s" % (info['errorCode'], info['errorMessage'])
-	else:
-		print "Something really fucked up happend."
+    http = httplib2.Http()
+    data = dict(version="2.0.1", longUrl=url, login=login,
+                apiKey=api_key)
+
+    resp, content = http.request("http://api.bit.ly/shorten?%s" %
+                                 urlencode(data), "GET")
+
+    info = json.loads(content)
+
+    if info['statusCode'] == 'OK':
+        print "%s <- %s" % (info['results'][url]['shortUrl'], url)
+    elif info['statusCode'] == 'ERROR':
+        print "[%s] %s" % (info['errorCode'], info['errorMessage'])
+    else:
+        print "Something really fucked up happend."
+
 
 def expand_shorturl(login, api_key, alias=None, short_url=None):
-	http = httplib2.Http()
-	
-	data = dict(version='2.0.1', login=login, apiKey=api_key)
-	
-	if short_url:
-		data['shortUrl'] = short_url
-	elif alias:
-		data['hash'] = alias
-	
-	resp, content = http.request("http://api.bit.ly/expand?%s" %
-		urlencode(data), "GET")
-	
-	info = json.loads(content)
-	
-	if info['statusCode'] == 'OK':
-		print "http://bit.ly/%s -> %s" % (alias, info['results'][alias]['longUrl'])
-	elif info['statusCode'] == 'ERROR':
-		print "[%s] %s" % (info['errorCode'], info['errorMessage'])
-	else:
-		print "Something really fucked up happend."
+    http = httplib2.Http()
+
+    data = dict(version='2.0.1', login=login, apiKey=api_key)
+
+    if short_url:
+        data['shortUrl'] = short_url
+    elif alias:
+        data['hash'] = alias
+
+    resp, content = http.request("http://api.bit.ly/expand?%s" %
+                                 urlencode(data), "GET")
+
+    info = json.loads(content)
+
+    if info['statusCode'] == 'OK':
+        print "http://bit.ly/%s -> %s" % (alias,
+                                          info['results'][alias]['longUrl'])
+    elif info['statusCode'] == 'ERROR':
+        print "[%s] %s" % (info['errorCode'], info['errorMessage'])
+    else:
+        print "Something really fucked up happend."
 
 INFO_TEMPLATE = """= %(html_title)s
 
@@ -59,98 +62,111 @@ INFO_TEMPLATE = """= %(html_title)s
 * Global Hash %(global_hash)s
 * User Hash %(user_hash)s"""
 
+
 def info_shorturl(login, api_key, alias=None, short_url=None):
-	http = httplib2.Http()
-	
-	data = dict(version='2.0.1', login=login, apiKey=api_key, keys="htmlTitle,longUrl,shortenedByUser,userHash,globalHash")
-	
-	if short_url:
-		data['shortUrl'] = short_url
-	elif alias:
-		data['hash'] = alias
-	
-	resp, content = http.request("http://api.bit.ly/info?%s" %
-		urlencode(data), "GET")
-	
-	info = json.loads(content)
-	
-	if info['statusCode'] == 'OK':
-		print INFO_TEMPLATE % { 'html_title': info['results'][alias]['htmlTitle'], 'long_url': info['results'][alias]['longUrl'], 'shortened_by_user': info['results'][alias]['shortenedByUser'], 'user_hash': info['results'][alias]['userHash'], 'global_hash': info['results'][alias]['globalHash'] }
-	elif info['statusCode'] == 'ERROR':
-		print "[%s] %s" % (info['errorCode'], info['errorMessage'])
-	else:
-		print "Something really fucked up happend."
+    http = httplib2.Http()
+
+    data = dict(version='2.0.1', login=login, apiKey=api_key,
+                keys="htmlTitle,longUrl,shortenedByUser,userHash,globalHash")
+
+    if short_url:
+        data['shortUrl'] = short_url
+    elif alias:
+        data['hash'] = alias
+
+    resp, content = http.request("http://api.bit.ly/info?%s" %
+                                 urlencode(data), "GET")
+
+    info = json.loads(content)
+
+    if info['statusCode'] == 'OK':
+        print INFO_TEMPLATE % {
+            'html_title': info['results'][alias]['htmlTitle'],
+            'long_url': info['results'][alias]['longUrl'],
+            'shortened_by_user': info['results'][alias]['shortenedByUser'],
+            'user_hash': info['results'][alias]['userHash'],
+            'global_hash': info['results'][alias]['globalHash']}
+    elif info['statusCode'] == 'ERROR':
+        print "[%s] %s" % (info['errorCode'], info['errorMessage'])
+    else:
+        print "Something really fucked up happend."
 
 STATS_TEMPLATE = """= %(hash)s
 
 * Clicks %(clicks)s"""
 
+
 def stats_shorturl(login, api_key, alias=None, short_url=None):
-	http = httplib2.Http()
-	
-	data = dict(version='2.0.1', login=login, apiKey=api_key)
-	
-	if short_url:
-		data['shortUrl'] = short_url
-	elif alias:
-		data['hash'] = alias
-	
-	resp, content = http.request("http://api.bit.ly/stats?%s" %
-		urlencode(data), "GET")
-	
-	info = json.loads(content)
-	
-	if info['statusCode'] == 'OK':
-		print STATS_TEMPLATE % { 'hash': info['results']['hash'], 'clicks': info['results']['clicks'] }
-	elif info['statusCode'] == 'ERROR':
-		print "[%s] %s" % (info['errorCode'], info['errorMessage'])
-	else:
-		print "Something really fucked up happend."
+    http = httplib2.Http()
+
+    data = dict(version='2.0.1', login=login, apiKey=api_key)
+
+    if short_url:
+        data['shortUrl'] = short_url
+    elif alias:
+        data['hash'] = alias
+
+    resp, content = http.request("http://api.bit.ly/stats?%s" %
+                                 urlencode(data), "GET")
+
+    info = json.loads(content)
+
+    if info['statusCode'] == 'OK':
+        print STATS_TEMPLATE % {
+            'hash': info['results']['hash'],
+            'clicks': info['results']['clicks']}
+    elif info['statusCode'] == 'ERROR':
+        print "[%s] %s" % (info['errorCode'], info['errorMessage'])
+    else:
+        print "Something really fucked up happend."
+
 
 def main():
-	DEFAULT_FILE = os.path.join(os.path.expanduser('~'), '.bitly.cfg')
-	URL_RE = re.compile("^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$")
-	
-	parser = OptionParser()
-	parser.add_option("-c", "--config", dest="config_file",
-		help="bit.ly configuration file.",
-		default=DEFAULT_FILE)
-	parser.add_option("-a", "--alias", dest="alias",
-		help="bit.ly URL alias.",
-		default=None)
-	
-	opts, args = parser.parse_args()
-	
-	config = ConfigParser()
-	config.read(opts.config_file)
-	
-	bitly_login = config.get('bit.ly', 'login')
-	bitly_api_key = config.get('bit.ly', 'api_key')
-	
-	if URL_RE.match(args[0]):
-		create_shorturl(args[0], bitly_login, bitly_api_key, opts.alias)
-	elif args[0] == 'expand':
-		if URL_RE.match(args[1]):
-			print expand_shorturl(bitly_login, bitly_api_key, short_url=args[1])
-	elif args[0] == 'info':
-		if URL_RE.match(args[1]):
-			# info_shorturl(bitly_login, bitly_api_key, short_url=args[1])
-			print "Work on information by hash.\nSorry."
-		else:
-			info_shorturl(bitly_login, bitly_api_key, alias=args[1])
-	elif args[0] == 'stats':
-		if URL_RE.match(args[1]):
-			# stats_shorturl(bitly_login, bitly_api_key, short_url=args[1])
-			print "Work on statistics by hash.\nSorry."
-		else:
-			stats_shorturl(bitly_login, bitly_api_key, alias=args[1])
-	elif args[0] == 'shorten':
-		if URL_RE.match(args[1]):
-			create_shorturl(args[1], bitly_login, bitly_api_key, opts.alias)
-		else:
-			print "You entered an invalid URL."
-	else:
-		print "I am not sure what you want."
+    DEFAULT_FILE = os.path.join(os.path.expanduser('~'), '.bitly.cfg')
+    URL_RE = re.compile("^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)"
+                        "*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$")
+
+    parser = OptionParser()
+    parser.add_option("-c", "--config", dest="config_file",
+                      help="bit.ly configuration file.",
+                      default=DEFAULT_FILE)
+    parser.add_option("-a", "--alias", dest="alias",
+                      help="bit.ly URL alias.",
+                      default=None)
+
+    opts, args = parser.parse_args()
+
+    config = ConfigParser()
+    config.read(opts.config_file)
+
+    bitly_login = config.get('bit.ly', 'login')
+    bitly_api_key = config.get('bit.ly', 'api_key')
+
+    if URL_RE.match(args[0]):
+        create_shorturl(args[0], bitly_login, bitly_api_key, opts.alias)
+    elif args[0] == 'expand':
+        if URL_RE.match(args[1]):
+            print expand_shorturl(bitly_login, bitly_api_key,
+                                  short_url=args[1])
+    elif args[0] == 'info':
+        if URL_RE.match(args[1]):
+            # info_shorturl(bitly_login, bitly_api_key, short_url=args[1])
+            print "Work on information by hash.\nSorry."
+        else:
+            info_shorturl(bitly_login, bitly_api_key, alias=args[1])
+    elif args[0] == 'stats':
+        if URL_RE.match(args[1]):
+            # stats_shorturl(bitly_login, bitly_api_key, short_url=args[1])
+            print "Work on statistics by hash.\nSorry."
+        else:
+            stats_shorturl(bitly_login, bitly_api_key, alias=args[1])
+    elif args[0] == 'shorten':
+        if URL_RE.match(args[1]):
+            create_shorturl(args[1], bitly_login, bitly_api_key, opts.alias)
+        else:
+            print "You entered an invalid URL."
+    else:
+        print "I am not sure what you want."
 
 if __name__ == "__main__":
-	main()
+    main()
