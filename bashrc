@@ -4,10 +4,9 @@ case $- in
       *) return;;
 esac
 
-. $HOME/.shell/aliases
-. $HOME/.shell/completions
-. $HOME/.shell/functions
-. $HOME/.shell/variables
-. $HOME/.shell/host_specific
-. $HOME/.shell/prompt
-
+source $HOME/.shell/aliases
+source $HOME/.shell/completions
+source $HOME/.shell/functions
+source $HOME/.shell/variables
+source $HOME/.shell/host_specific
+source $HOME/.shell/prompt

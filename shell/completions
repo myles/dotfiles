@@ -1,21 +1,11 @@
-return 
-
-set completions-ignore-case On
-
-for comp in \
-	$HOME/.bin/completion/git-completion.bash \
-	$HOME/.bin/completion/hg-completion.bash \
-	$HOME/.bin/completion/pip-completion.bash \
-	$HOME/.bin/completion/git-flow-completion.bash \
-	$HOME/.bin/completion/brew-completion.bash \
-	$HOME/.bin/completion/todo-completion.bash \
-	$HOME/.bin/completion/t-completion.sh
-do
-	[[ -e $comp ]] && source $comp
+for file in `ls -l $HOME/.bash_completion.d/*`; do
+  source $file
 done
 
-# Load zsh autocompletion
-if [ $SHELL == 'zsh' ]; then
-	autoload -Uz compinit
-	compinit
-fi
+for file in `ls -l /etc/bash_completion.d/*`; do
+  source $file
+done
+
+for file in `ls -l /usr/local/etc/bash_completion.d/*`; do
+  source $file
+done
