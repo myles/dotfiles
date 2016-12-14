@@ -1,11 +1,22 @@
-for file in `ls -l $HOME/.bash_completion.d/*`; do
-  source $file
-done
+if [[ -d $HOME/.bash_completion.d ]]; then
+  for file in $HOME/.bash_completion.d/*;
+  do
+    source $file
+  done
+fi
 
-for file in `ls -l /etc/bash_completion.d/*`; do
-  source $file
-done
+if [[ -d /etc/bash_completion.d ]];
+then
+  for file in /etc/bash_completion.d/*;
+  do
+    source $file
+  done
+fi
 
-for file in `ls -l /usr/local/etc/bash_completion.d/*`; do
-  source $file
-done
+if [[ -d /usr/local/etc/bash_completion.d ]];
+then
+  for file in /usr/local/etc/bash_completion.d/*;
+  do
+    source $file
+  done
+fi
