@@ -170,3 +170,11 @@ if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
 
+" VimWiki config
+let wiki = {}
+let wiki.path = '~/Dropbox/Documents/VimWiki/'
+let wiki.syntax = 'markdown'
+let wiki.ext = '.markdown'
+let wiki.nested_syntaxes = { 'python': 'python' }
+let g:vimwiki_list = [wiki]
+

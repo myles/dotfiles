@@ -8,11 +8,5 @@ pager = LESS='FSRX' less
 quite = True
 attend = log, glob, slog, diff, qdiff, annotate
 
-[extensions]
-hgext.bookmarks =
-color =
-hggit =
-
-[bookmarks]
-track.current = True
-
+[hostsecurity]
+hg.intevation.de:minimumprotocol = tls1.0

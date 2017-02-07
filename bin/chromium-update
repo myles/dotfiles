@@ -5,10 +5,10 @@ WGET=`which wget`
 LATEST_VERSION=`$CURL --silent http://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac/LAST_CHANGE`
 mkdir /tmp/chromium-update-$LATEST_VERSION
 echo "Download Chromium version $LATEST_VERSION."
-$WGET -q --output-document=/tmp/chromium-update/chrome-mac.zip --output-file=/tmp/chromium-update/download.log "http://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac/$LATEST_VERSION/chrome-mac.zip"
+$WGET -q --output-document=/tmp/chromium-update-$LATEST_VERSION/chrome-mac.zip --output-file=/tmp/chromium-update-$LATEST_VERSION/download.log "http://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac/$LATEST_VERSION/chrome-mac.zip"
 echo "Download completed. Now extracting the zip archive."
-unzip -qq /tmp/chromium-update/chrome-mac.zip -d /tmp/chromium-update
+unzip -qq /tmp/chromium-update-$LATEST_VERSION/chrome-mac.zip -d /tmp/chromium-update-$LATEST_VERSION
 rm -fr /Applications/Chromium.app
-mv /tmp/chromium-update/chrome-mac/Chromium.app /Applications/Chromium.app
+mv /tmp/chromium-update-$LATEST_VERSION/chrome-mac/Chromium.app /Applications/Chromium.app
 rm -fr /tmp/chromium-update-$LATEST_VERSION
 echo "Moved Chromium to the Applications directory."
