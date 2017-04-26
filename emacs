@@ -15,3 +15,110 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
 (setq-default tab-width 4)
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el)
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el)
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el)
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el)
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
