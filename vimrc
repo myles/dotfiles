@@ -81,7 +81,7 @@ if executable('ag')
 endif
 
 " Color scheme
-colorscheme anderson
+colorscheme solarized8_dark_low
 
 "colorscheme github
 "highlight NonText guibg=#060606

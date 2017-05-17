@@ -47,6 +47,7 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'amix/vim-zenroom2'
 Plugin 'junegunn/limelight.vim'
 Plugin 'vimwiki/vimwiki'
+Plugin 'lifepillar/vim-solarized8'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local

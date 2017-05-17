@@ -134,3 +134,87 @@
 
 ;; Added by Kite
 (load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")
+
+;; Added by Kite
+(load-file "~/.emacs.d/kite.el")

@@ -1,2 +1,2 @@
-EXCLUDES="README.mdown"
+EXCLUDES="README.mdown LICENSE"
 DOTFILES_DIRS="$HOME/.dotfiles-local $HOME/.dotfiles-private $HOME/.dotfiles"
