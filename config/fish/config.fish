@@ -5,3 +5,5 @@ set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 export GOPATH=$HOME/.go/
 
 source ~/.config/fish/path.fish
+
+status --is-interactive; and source (rbenv init -|psub)

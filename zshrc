@@ -11,3 +11,6 @@ promptinit
 if [ -f ~/.bash_local ]; then
     . ~/.bash_local
 fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

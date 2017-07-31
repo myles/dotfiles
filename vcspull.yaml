@@ -64,3 +64,6 @@
   "octoprint-telegram-bot": "git+ssh://git@github.com/myles/hacklab-octoprint-telegram-bot.git"
 ~/Clients/ScottSullivan/WebSites/:
   "eviltitle.wtf-www": "git+ssh://git@github.com/myles/eviltitle.wtf.git"
+~/Notebooks/:
+  "Public": "git+ssh://git@github.com/myles/notebooks.git"
+  "Private": "git+ssh://git@github.com/myles/notebooks-pvt.git"

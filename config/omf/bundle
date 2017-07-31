@@ -1,3 +1,8 @@
+package config
+package foreign-env
+package https://github.com/oh-my-fish/plugin-bak
+package nvm
 package osx
+package rbenv
 theme default
 theme lambda

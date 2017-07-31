@@ -1,0 +1,105 @@
+#!/usr/bin/env python
+"""
+Shows git branches sorted by last commit date, noting when branch has been
+merged:
+
+    $ git blast
+    * master           33 minutes ago       last commit message
+      some-feature     4 days ago      [M]  another commit message
+      dev-branch       4 days ago           wip
+      legacy-branch    5 days ago      [M]  a commit message
+      another-feature  4 months ago         test
+"""
+
+# https://github.com/wolever/git-blast
+# tl;dr: all code code is licensed under simplified BSD, unless stated otherwise.
+
+# Unless stated otherwise in the source files, all code is copyright 2017 David
+# Wolever <david@wolever.net>. All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+#    1. Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
+
+#    2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+
+# THIS SOFTWARE IS PROVIDED BY DAVID WOLEVER ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+# EVENT SHALL DAVID WOLEVER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+# INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# The views and conclusions contained in the software and documentation are those
+# of the authors and should not be interpreted as representing official policies,
+# either expressed or implied, of David Wolever.
+
+import subprocess as sp
+import sys
+
+
+def xcall(cmd):
+    return sp.check_output(cmd.split(), stderr=sp.STDOUT).decode("utf-8")
+
+
+color_current_branch = '\033[0;32m'
+color_merged_branch = '\033[0;32m'
+color_last_commit_ago = '\033[38;5;185m'
+color_reset = '\033[0;0m'
+
+
+def main():
+    try:
+        cur_branch = xcall("git rev-parse --abbrev-ref HEAD").strip()
+    except sp.CalledProcessError as e:
+        print(e)
+        sys.exit(1)
+
+    merged_branches = set([
+        x.split()[-1] for x
+        in xcall("git branch --merged").splitlines()
+    ])
+
+    by_date = xcall(
+        "git for-each-ref --sort=-committerdate refs/heads/ "
+        "--format=%(refname:short)%09%(committerdate:relative)%09%"
+        "(contents:subject)"
+    )
+
+    table = []
+    for line in by_date.splitlines():
+        branch, date, message = line.split("\t")
+        table.append((branch, date, message))
+
+    lens = [max(len(row[i]) for row in table) for i in range(len(table[0]))]
+
+    for branch, date, message in table:
+        branch_d = branch.ljust(lens[0] + 1)
+        date_d = date.ljust(lens[1] + 1)
+
+        output = ""
+        if branch == cur_branch:
+            output += "* {}{}".format(color_current_branch, branch_d)
+        else:
+            output += "  {}".format(branch_d)
+
+        output += " {}{}{}".format(color_last_commit_ago, date_d, color_reset)
+        if branch in merged_branches and branch != cur_branch:
+            output += "[{}M{}]  ".format(color_merged_branch, color_reset)
+        else:
+            output += "     "
+
+        output += message
+        print(output)
+
+
+if __name__ == '__main__':
+    main()
