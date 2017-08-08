@@ -81,7 +81,7 @@ if executable('ag')
 endif
 
 " Color scheme
-colorscheme solarized8_dark_low
+colorscheme vim-material
 
 "colorscheme github
 "highlight NonText guibg=#060606
