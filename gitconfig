@@ -17,15 +17,12 @@
   st = status
 
 [core]
-  excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
   autocrlf = input
+	quotepath = false
 
 [merge]
   ff = only
-
-[commit]
-  template = ~/.gitmessage
 
 [fetch]
   prune = true
