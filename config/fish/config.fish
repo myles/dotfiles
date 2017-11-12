@@ -6,4 +6,4 @@ export GOPATH=$HOME/.go/
 
 source ~/.config/fish/path.fish
 
-status --is-interactive; and test -e (which rbenv); and source (rbenv init -|psub)
+# status --is-interactive; and test -e (which rbenv); and source (rbenv init -|psub)

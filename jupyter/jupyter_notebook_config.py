@@ -74,7 +74,7 @@ c = get_config()
 # c.NotebookApp.allow_origin = ''
 
 # The notebook manager class to use.
-# c.NotebookApp.contents_manager_class = <class 'IPython.html.services.contents.filemanager.FileContentsManager'>
+# c.NotebookApp.contents_manager_class = <class 'notebook.services.contents.filemanager.FileContentsManager'>
 
 # Use a regular expression for the Access-Control-Allow-Origin header
 #
@@ -91,7 +91,7 @@ c = get_config()
 # c.NotebookApp.certfile = u''
 
 # The logout handler class to use.
-# c.NotebookApp.logout_handler_class = <class 'IPython.html.auth.logout.LogoutHandler'>
+# c.NotebookApp.logout_handler_class = <class 'notebook.auth.logout.LogoutHandler'>
 
 # The base URL for the notebook server.
 #
@@ -99,7 +99,7 @@ c = get_config()
 # c.NotebookApp.base_url = '/'
 
 # The session manager class to use.
-# c.NotebookApp.session_manager_class = <class 'IPython.html.services.sessions.sessionmanager.SessionManager'>
+# c.NotebookApp.session_manager_class = <class 'notebook.services.sessions.sessionmanager.SessionManager'>
 
 # Supply overrides for the tornado.web.Application that the IPython notebook
 # uses.
@@ -109,7 +109,7 @@ c = get_config()
 c.NotebookApp.notebook_dir = os.path.expanduser(u"~/Notebooks")
 
 # The kernel manager class to use.
-# c.NotebookApp.kernel_manager_class = <class 'IPython.html.services.kernels.kernelmanager.MappingKernelManager'>
+# c.NotebookApp.kernel_manager_class = <class 'notebook.services.kernels.kernelmanager.MappingKernelManager'>
 
 # The file where the cookie secret is stored.
 # c.NotebookApp.cookie_secret_file = u''
@@ -133,7 +133,7 @@ c.NotebookApp.notebook_dir = os.path.expanduser(u"~/Notebooks")
 # c.NotebookApp.enable_mathjax = True
 
 # The cluster manager class to use.
-# c.NotebookApp.cluster_manager_class = <class 'IPython.html.services.clusters.clustermanager.ClusterManager'>
+# c.NotebookApp.cluster_manager_class = <class 'notebook.services.clusters.clustermanager.ClusterManager'>
 
 # The base URL for websockets, if it differs from the HTTP server (hint: it
 # almost certainly doesn't).
@@ -189,11 +189,11 @@ c.NotebookApp.notebook_dir = os.path.expanduser(u"~/Notebooks")
 
 # Extra paths to search for serving jinja templates.
 #
-# Can be used to override templates from IPython.html.templates.
+# Can be used to override templates from notebook.templates.
 # c.NotebookApp.extra_template_paths = []
 
 # The config manager class to use
-# c.NotebookApp.config_manager_class = <class 'IPython.html.services.config.manager.ConfigManager'>
+# c.NotebookApp.config_manager_class = <class 'notebook.services.config.manager.ConfigManager'>
 
 # Whether to install the default config files into the profile dir. If a new
 # profile is being created, and IPython contains config files for that profile,
@@ -202,7 +202,7 @@ c.NotebookApp.notebook_dir = os.path.expanduser(u"~/Notebooks")
 # c.NotebookApp.copy_config_files = False
 
 # The login handler class to use.
-# c.NotebookApp.login_handler_class = <class 'IPython.html.auth.login.LoginHandler'>
+# c.NotebookApp.login_handler_class = <class 'notebook.auth.login.LoginHandler'>
 
 # DEPRECATED, use tornado_settings
 # c.NotebookApp.webapp_settings = {}
@@ -427,7 +427,7 @@ c.NotebookApp.notebook_dir = os.path.expanduser(u"~/Notebooks")
 # c.ContentsManager.pre_save_hook = None
 
 #
-# c.ContentsManager.checkpoints_class = <class 'IPython.html.services.contents.checkpoints.Checkpoints'>
+# c.ContentsManager.checkpoints_class = <class 'notebook.services.contents.checkpoints.Checkpoints'>
 
 # Glob patterns to hide in file and directory listings.
 # c.ContentsManager.hide_globs = [u'__pycache__', '*.pyc', '*.pyo', '.DS_Store', '*.so', '*.dylib', '*~']
@@ -489,7 +489,7 @@ c.NotebookApp.notebook_dir = os.path.expanduser(u"~/Notebooks")
 # c.FileContentsManager.pre_save_hook = None
 
 #
-# c.FileContentsManager.checkpoints_class = <class 'IPython.html.services.contents.checkpoints.Checkpoints'>
+# c.FileContentsManager.checkpoints_class = <class 'notebook.services.contents.checkpoints.Checkpoints'>
 
 # Glob patterns to hide in file and directory listings.
 # c.FileContentsManager.hide_globs = [u'__pycache__', '*.pyc', '*.pyo', '.DS_Store', '*.so', '*.dylib', '*~']
