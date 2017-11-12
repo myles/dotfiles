@@ -24,6 +24,7 @@
   attributesfile = ~/.gitattributes
   autocrlf = input
 	quotepath = false
+	editor = nano
 
 [merge]
   ff = only
