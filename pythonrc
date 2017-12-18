@@ -1,0 +1,21 @@
+# vim: set ft=python
+
+from __future__ import print_function
+
+import datetime
+import os
+import time
+
+from pprint import pprint
+
+try:
+    import simplejson as json
+except ImportError:
+    import json
+
+try:
+    import ipdb
+except ImportError:
+    import pdb
+
+print("\nMyles' Python")

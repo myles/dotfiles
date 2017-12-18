@@ -5,5 +5,8 @@ set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 export GOPATH=$HOME/.go/
 
 source ~/.config/fish/path.fish
+source ~/.config/fish/gnupg.fish
 
-# status --is-interactive; and test -e (which rbenv); and source (rbenv init -|psub)
+status --is-interactive; and test -e (which rbenv); and source (rbenv init -|psub)
+
+eval (python3 -m virtualfish)

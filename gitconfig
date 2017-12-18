@@ -9,7 +9,7 @@
   default = current
 
 [color]
-  ui = auto
+	ui = true
 
 [alias]
   aa = add --all
@@ -25,6 +25,7 @@
   autocrlf = input
 	quotepath = false
 	editor = nano
+	excludesfile = /Users/myles/.gitignore
 
 [merge]
   ff = only

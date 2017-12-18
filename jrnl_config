@@ -8,12 +8,8 @@
   "timeformat": "%Y-%m-%d %H:%M",
   "highlight": true,
   "journals": {
-    "default": "~/Library/Group Containers/5U8NS4GX82.dayoneapp/Data/Documents/Journal.dayone/",
-    "me": "~/BTSync/Journals/journal.txt",
-    "work": "~/BTSync/Journals/work.txt",
-    "pvt": {
-      "journal": "~/BTSync/Journals/pvt.txt",
-      "encrypt": true
+    "default": {
+      "journal": "~/Dropbox/Journals/default.txt"
     }
   }
 }

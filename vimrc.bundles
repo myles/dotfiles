@@ -2,7 +2,7 @@ if &compatible
   set nocompatible
 end
 
-" Remove declared plugins
+" Remove declared Plugs
 function! s:UnPlug(plug_name)
   if has_key(g:plugs, a:plug_name)
     call remove(g:plugs, a:plug_name)
@@ -15,33 +15,34 @@ let g:has_async = v:version >= 800 || has('nvim')
 call plug#begin('~/.vim/bundle')
 
 " Define bundles via Github repos
-Plugin 'christoomey/vim-run-interactive'
-Plugin 'croaky/vim-colors-github'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'pbrisbin/vim-mkdir'
-Plugin 'scrooloose/syntastic'
-Plugin 'slim-template/vim-slim'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'vim-scripts/ctags.vim'
-Plugin 'vim-scripts/matchit.zip'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'mhartington/oceanic-next'
-Plugin 'gilgigilgil/anderson.vim'
-Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/Conque-Shell'
-Plugin 'lifepillar/vim-solarized8'
-Plugin 'hzchirs/vim-material'
+Plug 'christoomey/vim-run-interactive'
+Plug 'croaky/vim-colors-github'
+Plug 'kchmck/vim-coffee-script'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'scrooloose/syntastic'
+Plug 'slim-template/vim-slim'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/ctags.vim'
+Plug 'vim-scripts/matchit.zip'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'mhartington/oceanic-next'
+Plug 'gilgigilgil/anderson.vim'
+Plug 'bling/vim-airline'
+Plug 'airblade/vim-gitgutter'
+Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/Conque-Shell'
+Plug 'lifepillar/vim-solarized8'
+Plug 'hzchirs/vim-material'
+Plug 'dracula/vim'
 
 if g:has_async
   Plug 'w0rp/ale'
