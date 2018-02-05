@@ -18,6 +18,10 @@ if [ -d $GOPATH/bin ]; then
   export PATH=$GOPATH/bin:$PATH
 fi
 
+if [ -d $HOME/.local/bin ]; then
+  export PATH=$HOME/.local/bin:$PATH
+fi
+
 if [ -d /usr/local/Frameworks/Python.framework/Versions/Current/bin ]; then
   export PATH=/usr/local/Frameworks/Python.framework/Versions/Current/bin:$PATH
 fi
