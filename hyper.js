@@ -33,10 +33,10 @@ module.exports = {
     cursorBlink: false,
 
     // color of the text
-    foregroundColor: '#000',
+    foregroundColor: '#fff',
 
     // terminal background color
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
 
     // border color (window, tabs)
     borderColor: '#333',

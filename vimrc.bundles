@@ -43,6 +43,7 @@ Plug 'vim-scripts/Conque-Shell'
 Plug 'lifepillar/vim-solarized8'
 Plug 'hzchirs/vim-material'
 Plug 'dracula/vim'
+Plug 'cespare/vim-toml'
 
 if g:has_async
   Plug 'w0rp/ale'

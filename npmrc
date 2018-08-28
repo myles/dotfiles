@@ -1,1 +1,2 @@
-root = ~/.node_libraries
+root=~/.node_libraries
+@fortawesome:registry=https://npm.fontawesome.com/

@@ -5,6 +5,7 @@ test -d "$HOME/.bin-private"; and set -g fish_user_paths "$HOME/.bin-private" $f
 test -d "$GOPATH/bin"; and set -g fish_user_paths "$GOPATH/bin" $fish_user_paths
 
 test -d "$HOME/.local/bin"; and set -g fish_user_paths "$HOME/.local/bin" $fish_user_paths
+test -d "$HOME/.cargo/bin"; and set -g fish_user_paths "$HOME/.cargo/bin" $fish_user_paths
 
 test -d "$HOME/.rbenv/bin"; and set -g fish_user_paths "$HOME/.rbenv/bin" $fish_user_paths
 test -d "$HOME/.rbenv/shims"; and set -g fish_user_paths "$HOME/.rbenv/shims" $fish_user_paths

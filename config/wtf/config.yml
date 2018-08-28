@@ -1,0 +1,73 @@
+wtf:
+  colors:
+    border:
+      focusable: darkslateblue
+      focused: orange
+      normal: gray
+  grid:
+    columns: [45, 45]
+    rows: [10, 10, 10]
+  refreshInterval: 1
+  mods:
+    clocks:
+      colors:
+        rows:
+          even: "lightblue"
+          odd: "white"
+      enabled: true
+      locations:
+        London: "Europe/London"
+        Dublin: "Europe/Dublin"
+        Toronto: "America/Toronto"
+        Vancouver: "America/Vancouver"
+      position:
+        top: 0
+        left: 0
+        height: 1
+        width: 1
+      refreshInterval: 15
+      sort: "chronological"
+    power:
+      enabled: true
+      position:
+        top: 0
+        left: 1
+        height: 1
+        width: 1
+      refreshInterval: 15
+    git:
+      commitCount: 5
+      commitFormat: "[forestgreen]%h [grey]%cd [white]%s [grey]%an[white]"
+      dateFormat: "%H:%M %d %b %y"
+      enabled: true
+      position:
+        top: 1
+        left: 0
+        height: 1
+        width: 2
+      refreshInterval: 8
+      repositories:
+        - "/Users/myles/Clients/Braithwaite/WebSites/grantmatch.ca-app/"
+        - "/Users/myles/Clients/Braithwaite/WebSites/fairtax.ca-grants/"
+    hackernews:
+      enabled: true
+      numberOfStories: 11
+      position:
+        top: 2
+        left: 1
+        height: 1
+        width: 1
+      storyType: top
+      refreshInterval: 900
+    prettyweather:
+      enabled: true
+      city: "toronto"
+      position:
+        top: 2
+        left: 0
+        height: 1
+        width: 1
+      refreshInterval: 300
+      unit: "c"
+      view: 0
+      language: "en"

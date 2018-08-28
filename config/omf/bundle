@@ -1,8 +1,10 @@
 package config
 package foreign-env
+package git-flow
 package https://github.com/oh-my-fish/plugin-bak
 package nvm
 package osx
 package rbenv
+theme bobthefish
 theme default
 theme lambda

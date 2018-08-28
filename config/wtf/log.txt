@@ -1,0 +1,1 @@
+2018/08/28 14:20:13 log.go:46: Copied old config from /Users/myles/.wtf to /Users/myles/.config/wtf
