@@ -8,3 +8,4 @@ package rbenv
 theme bobthefish
 theme default
 theme lambda
+theme taktoa

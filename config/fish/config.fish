@@ -5,6 +5,8 @@ test -e "/usr/local/sbin"; and set -g fish_user_paths "/usr/local/sbin" $fish_us
 source ~/.config/fish/path.fish
 source ~/.config/fish/gnupg.fish
 
+test -e "/usr/local/miniconda3/etc/fish/conf.d/conda.fish"; and source /usr/local/miniconda3/etc/fish/conf.d/conda.fish
+
 function next_version
   bumpversion --dry-run --list $argv | grep "new_version=" | sed s,"^.*=",,
 end

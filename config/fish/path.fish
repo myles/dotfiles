@@ -1,3 +1,5 @@
+test -d "/usr/local/miniconda3/bin"; and set -g fish_user_paths "/usr/local/miniconda3/bin" $fish_user_paths
+
 test -d "$HOME/.bin"; and set -g fish_user_paths "$HOME/.bin" $fish_user_paths
 test -d "$HOME/.bin-local"; and set -g fish_user_paths "$HOME/.bin-local" $fish_user_paths
 test -d "$HOME/.bin-private"; and set -g fish_user_paths "$HOME/.bin-private" $fish_user_paths
