@@ -16,3 +16,5 @@ test -d "/usr/local/sbin"; and set -g fish_user_paths "/usr/local/sbin" $fish_us
 test -d "/usr/local/bin"; and set -g fish_user_paths "/usr/local/bin" $fish_user_paths
 
 test -d "/usr/local/opt/gettext/bin"; and set -g fish_user_paths "/usr/local/opt/gettext/bin" $fish_user_paths
+
+test -d "$HOME/.composer/vendor/bin/"; and set -g fish_user_paths "$HOME/.composer/vendor/bin/" $fish_user_paths
