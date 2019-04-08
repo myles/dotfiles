@@ -1,6 +1,6 @@
 {
     "require": {
-        "laravel/installer": "^1.4",
+        "laravel/installer": "^2.0.0",
         "squizlabs/php_codesniffer": "^3.4"
     }
 }
