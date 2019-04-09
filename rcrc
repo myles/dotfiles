@@ -1,2 +1,2 @@
-EXCLUDES="README.mdown LICENSE"
+EXCLUDES="README.mdown LICENSE renovate.json"
 DOTFILES_DIRS="$HOME/.dotfiles $HOME/.dotfiles-local $HOME/.dotfiles-private"
