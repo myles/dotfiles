@@ -30,11 +30,14 @@ end
 
 export GOPATH=$HOME/.go/
 
-eval (python3 -m virtualfish)
-
+# rbenv setup
 status --is-interactive; and test -e (which rbenv); and source (rbenv init -|psub)
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/google-cloud-sdk/path.fish.inc' ]; if type source > /dev/null; source '/usr/local/google-cloud-sdk/path.fish.inc'; else; . '/usr/local/google-cloud-sdk/path.fish.inc'; end; end
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+# pyenv setup
+status --is-interactive; and test -e (which pyenv); and pyenv init - | source
+status --is-interactive; and test -e (which pyenv); and pyenv virtualenv-init - | source

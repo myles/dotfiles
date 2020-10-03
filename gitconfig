@@ -1,7 +1,6 @@
 [user]
 	name = Myles Braithwaite
 	email = me@mylesbraithwaite.com
-	signingkey = 6720DB3C03FFDDF138387D4AA49A64DF5B423590
 
 [init]
   templatedir = ~/.git_template
@@ -43,14 +42,9 @@
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[commit]
-	gpgsign = true
+[gpg]
+	program = /usr/local/bin/gpg
