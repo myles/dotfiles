@@ -38,3 +38,7 @@ status --is-interactive; and test -e (which rbenv); and source (rbenv init -|psu
 if [ -f '/usr/local/google-cloud-sdk/path.fish.inc' ]; if type source > /dev/null; source '/usr/local/google-cloud-sdk/path.fish.inc'; else; . '/usr/local/google-cloud-sdk/path.fish.inc'; end; end
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+
+# The next line updates PATH for Netlify's Git Credential Helper.
+test -f '/Users/myles/Library/Preferences/netlify/helper/path.fish.inc' && source '/Users/myles/Library/Preferences/netlify/helper/path.fish.inc'

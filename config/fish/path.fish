@@ -18,3 +18,7 @@ test -d "/usr/local/bin"; and set -g fish_user_paths "/usr/local/bin" $fish_user
 test -d "/usr/local/opt/gettext/bin"; and set -g fish_user_paths "/usr/local/opt/gettext/bin" $fish_user_paths
 
 test -d "$HOME/.composer/vendor/bin/"; and set -g fish_user_paths "$HOME/.composer/vendor/bin/" $fish_user_paths
+
+test -d "/usr/local/opt/python@3.8/bin"; and set -g fish_user_paths "/usr/local/opt/python@3.8/bin" $fish_user_paths
+
+test -d "$HOME/.poetry/bin"; and set -g fish_user_paths "$HOME/.poetry/bin" $fish_user_paths
