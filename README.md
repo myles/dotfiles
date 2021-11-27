@@ -9,10 +9,14 @@ These are config files to set up a system the way I like it.
 
 ## Usage
 
+Ensure you are using zsh:
+
+	chsh -s $(which zsh)
+
 Clone the `dotfiles` repository to your local disk:
 
 	git clone git://github.com/myles/dotfiles ~/.dotfiles
 
 Then run `rcup` to link all the dotfiles:
 
-	rcup
+	env RCRC=$HOME/.dotfiles/rcrc rcup
