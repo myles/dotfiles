@@ -1,4 +1,4 @@
 #!/bin/sh
 # gitmoji as a commit hook
 exec < /dev/tty
-~/.nvm/versions/node/v12.11.0/bin/node ~/.nvm/versions/node/v12.11.0/bin/gitmoji --hook $1
+gitmoji --hook $1 $2
