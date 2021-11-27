@@ -1,0 +1,16 @@
+# Pretty print the path
+alias path='echo $PATH | tr -s ":" "\n"'
+
+# Bungalow's Fieldstone command
+if [[ -f $HOME/Projects/fieldstone/scripts/manage ]]
+then
+  alias fs='source $HOME/Projects/fieldstone/scripts/manage'
+else
+  alias fs='echo "install fieldstone to use the fs command"'
+fi
+
+# Include custom aliases
+if [[ -f ~/.aliases.local ]]
+then
+  source ~/.aliases.local
+fi

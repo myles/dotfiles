@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/sh
 # Install oh-my-zsh if it hasn't been installed already.
 
 DIRECTORY="$HOME/.oh-my-zsh"
