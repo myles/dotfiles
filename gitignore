@@ -1,5 +1,9 @@
-# Mac OS X stuff.
+# macOS stuff.
 .DS_Store
 
 # Python stuff.
 *.py[co]
+
+# Fieldstone stuff.
+fieldstone/tmp_db/
+db_previous/
