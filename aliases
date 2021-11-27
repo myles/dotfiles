@@ -14,3 +14,9 @@ if [[ -f ~/.aliases.local ]]
 then
   source ~/.aliases.local
 fi
+
+# Reload zsh's config
+alias reload!='. ~/.zshrc'
+
+# Good 'ol Clear Screen command
+alias cls='clear'
