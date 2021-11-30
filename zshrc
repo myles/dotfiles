@@ -113,15 +113,17 @@ _load_settings "$HOME/.zsh/configs"
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 # syntax highlighting
-# brew install zsh-syntax-highlighting
-if [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# brew install zsh-syntax-highlightin
+export ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE="/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [ -f "$ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE" ]; then
+  source $ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE
 fi
 
 # autocomplete
-# brew install zsh-syntax-highlighting
-if [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# brew install zsh-autocomplete
+export ZSH_AUTOCOMPLETE_SOURCE_FILE="/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [ -f "$ZSH_AUTOCOMPLETE_SOURCE_FILE" ]; then
+  source $ZSH_AUTOCOMPLETE_SOURCE_FILE
 fi
 
 # activate oh-my-zsh
