@@ -112,5 +112,17 @@ _load_settings "$HOME/.zsh/configs"
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
+# syntax highlighting
+# brew install zsh-syntax-highlighting
+if [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# autocomplete
+# brew install zsh-syntax-highlighting
+if [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
 # activate oh-my-zsh
 source $ZSH/oh-my-zsh.sh
