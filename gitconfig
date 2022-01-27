@@ -1,52 +1,13 @@
 [user]
 	name = Myles Braithwaite
 	email = me@mylesbraithwaite.com
-
-[init]
-  templatedir = ~/.git_template
-
-[push]
-  default = current
-
 [color]
 	ui = true
-
-[alias]
-  aa = add --all
-  ap = add --patch
-  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
-  update-from = "!f() { git fetch $1 --prune; git merge --ff-only $1/$2 || git rebase --preserve-merges $1/$2; }; f"
-  ci = commit -v
-  co = checkout
-  pf = push --force-with-lease
-  st = status
-
-[core]
-  attributesfile = ~/.gitattributes
-  autocrlf = input
-	quotepath = false
-	editor = nano
-	excludesfile = /Users/myles/.gitignore
-
 [merge]
-  ff = only
-
+	ff = only
 [fetch]
-  prune = true
-
+	prune = true
 [rebase]
-  autosquash = true
-
-[include]
-  path = ~/.gitconfig.local
-
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[gpg]
-	program = /usr/local/bin/gpg
-[include]
-  path = /Users/myles/Library/Preferences/netlify/helper/git-config
+	autosquash = true
+[push]
+	default = current

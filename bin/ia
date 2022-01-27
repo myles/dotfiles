@@ -1,6 +1,0 @@
-#!/bin/bash
-#
-# Brendan Erwin
-# https://gist.github.com/996464
-
-/usr/bin/open $1 -a /Applications/iA\ Writer.app

@@ -1,0 +1,14 @@
+# Pretty print the path
+alias path='echo $PATH | tr -s ":" "\n"'
+
+# Include custom aliases
+if [[ -f ~/.aliases.local ]]
+then
+  source ~/.aliases.local
+fi
+
+# Reload zsh's config
+alias reload!='. ~/.zshrc'
+
+# Good 'ol Clear Screen command
+alias cls='clear'

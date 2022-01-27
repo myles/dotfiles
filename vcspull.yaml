@@ -1,6 +1,0 @@
-~/:
-  ".dotfiles": "git+ssh://git@github.com/myles/dotfiles.git"
-
-~/Notebooks/:
-  "Public": "git+ssh://git@github.com/myles/notebooks.git"
-  "Private": "git+ssh://git@github.com/myles/notebooks-pvt.git"
