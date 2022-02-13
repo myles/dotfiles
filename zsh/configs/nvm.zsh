@@ -1,12 +1,10 @@
 export NVM_DIR="$HOME/.nvm"
 
 # This loads nvm
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "$HOMEBREW_ROOT/opt/nvm/nvm.sh" ] && . "$HOMEBREW_ROOT/opt/nvm/nvm.sh"
 
 # This loads nvm bash_completion
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-[ -s "/opt/homebrew/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/etc/bash_completion.d/nvm"
+[ -s "$HOMEBREW_ROOT/opt/nvm/etc/bash_completion.d/nvm" ] && . "$HOMEBREW_ROOT/opt/nvm/etc/bash_completion.d/nvm"
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook

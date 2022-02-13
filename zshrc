@@ -114,14 +114,14 @@ _load_settings "$HOME/.zsh/configs"
 
 # syntax highlighting
 # brew install zsh-syntax-highlightin
-export ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE="/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+export ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE="$HOMEBREW_ROOT/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 if [ -f "$ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE" ]; then
   source $ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE
 fi
 
 # autocomplete
 # brew install zsh-autocomplete
-export ZSH_AUTOCOMPLETE_SOURCE_FILE="/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+export ZSH_AUTOCOMPLETE_SOURCE_FILE="$HOMEBREW_ROOT/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 if [ -f "$ZSH_AUTOCOMPLETE_SOURCE_FILE" ]; then
   source $ZSH_AUTOCOMPLETE_SOURCE_FILE
 fi
