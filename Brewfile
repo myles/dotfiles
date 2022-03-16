@@ -1,16 +1,16 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-
 brew "rcm"
-
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
-
 cask "adobe-creative-cloud"
 cask "discord"
 cask "firefox-developer-edition"
+cask "font-sf-mono"
+cask "font-sf-mono-for-powerline"
 cask "iterm2"
 cask "jetbrains-toolbox"
 cask "messenger"
