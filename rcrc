@@ -1,2 +1,2 @@
-EXCLUDES="README.md"
+EXCLUDES="README.md Brefile"
 DOTFILES_DIRS="$HOME/.dotfiles $HOME/.dotfiles-local $HOME/.dotfiles-private"
