@@ -124,6 +124,59 @@
             }
           }
         }
+      },
+      "nvm": {
+        "version": "0.39.1_1",
+        "bottle": {
+          "rebuild": 0,
+          "root_url": "https://ghcr.io/v2/homebrew/core",
+          "files": {
+            "all": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/nvm/blobs/sha256:6e14c8a2bf94212545c1ebac9a722df168c318d0e8af2fc75b729a07fea54efe",
+              "sha256": "6e14c8a2bf94212545c1ebac9a722df168c318d0e8af2fc75b729a07fea54efe"
+            }
+          }
+        }
+      },
+      "pyenv": {
+        "version": "2.2.4-1",
+        "bottle": {
+          "rebuild": 0,
+          "root_url": "https://ghcr.io/v2/homebrew/core",
+          "files": {
+            "arm64_monterey": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/pyenv/blobs/sha256:8ad522eb229b702dbe82444a11d5358ffa07d429d23c3ce689a5639a39d7568e",
+              "sha256": "8ad522eb229b702dbe82444a11d5358ffa07d429d23c3ce689a5639a39d7568e"
+            },
+            "arm64_big_sur": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/pyenv/blobs/sha256:24b0dc8ff20aa550332108314ecbd544bd056851b94915ee51d53dff3324b7ee",
+              "sha256": "24b0dc8ff20aa550332108314ecbd544bd056851b94915ee51d53dff3324b7ee"
+            },
+            "monterey": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/pyenv/blobs/sha256:f3961eb526561c9a75fd07946e689d5e9a005bd61c09b3f578ad56d58f6cc726",
+              "sha256": "f3961eb526561c9a75fd07946e689d5e9a005bd61c09b3f578ad56d58f6cc726"
+            },
+            "big_sur": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/pyenv/blobs/sha256:71dce77542c76862cde0a4a12a93fbe7825fd5e5ea5c6019fdc7d07d72bedcfc",
+              "sha256": "71dce77542c76862cde0a4a12a93fbe7825fd5e5ea5c6019fdc7d07d72bedcfc"
+            },
+            "catalina": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/pyenv/blobs/sha256:da9627aef795c2d7c90e50df2a742f62fd807c8c9bb5fccbaca4a2d427b4048f",
+              "sha256": "da9627aef795c2d7c90e50df2a742f62fd807c8c9bb5fccbaca4a2d427b4048f"
+            },
+            "x86_64_linux": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/pyenv/blobs/sha256:ef3d3c3003adb228e39edeb2122d9a63caba8c7d731962497763808ad0ee1a8f",
+              "sha256": "ef3d3c3003adb228e39edeb2122d9a63caba8c7d731962497763808ad0ee1a8f"
+            }
+          }
+        }
       }
     },
     "cask": {
@@ -227,6 +280,12 @@
         "version": "17.1d1e1",
         "options": {
           "full_name": "font-sf-pro"
+        }
+      },
+      "slack": {
+        "version": "4.24.1",
+        "options": {
+          "full_name": "slack"
         }
       }
     }
