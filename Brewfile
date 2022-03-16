@@ -3,6 +3,8 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
+brew "awscli"
+brew "mas"
 brew "nvm"
 brew "pyenv"
 brew "rcm"
@@ -26,3 +28,6 @@ cask "postbox"
 cask "setapp"
 cask "slack"
 cask "visual-studio-code"
+mas "1Password 7", id: 1333542190
+mas "DaisyDisk", id: 411643860
+mas "Momentum", id: 1564329434
