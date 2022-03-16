@@ -27,6 +27,7 @@ cask "nova"
 cask "postbox"
 cask "setapp"
 cask "slack"
+cask "spotify"
 cask "visual-studio-code"
 mas "1Password 7", id: 1333542190
 mas "DaisyDisk", id: 411643860
