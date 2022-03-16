@@ -210,6 +210,24 @@
         "options": {
           "full_name": "font-sf-mono-for-powerline"
         }
+      },
+      "font-new-york": {
+        "version": "17.0d5e1",
+        "options": {
+          "full_name": "font-new-york"
+        }
+      },
+      "font-sf-compact": {
+        "version": "17.1d1e1",
+        "options": {
+          "full_name": "font-sf-compact"
+        }
+      },
+      "font-sf-pro": {
+        "version": "17.1d1e1",
+        "options": {
+          "full_name": "font-sf-pro"
+        }
       }
     }
   },
