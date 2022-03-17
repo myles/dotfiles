@@ -12,7 +12,10 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 cask "adobe-creative-cloud"
 cask "discord"
+cask "figma"
 cask "firefox-developer-edition"
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
 cask "font-new-york"
 cask "font-sf-compact"
 cask "font-sf-mono"
@@ -26,9 +29,12 @@ cask "microsoft-office"
 cask "nova"
 cask "postbox"
 cask "setapp"
+cask "sketch"
 cask "slack"
 cask "spotify"
 cask "visual-studio-code"
 mas "1Password 7", id: 1333542190
+mas "CARROT Weather", id: 993487541
 mas "DaisyDisk", id: 411643860
+mas "Fantastical", id: 975937182
 mas "Momentum", id: 1564329434
