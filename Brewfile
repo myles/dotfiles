@@ -4,16 +4,25 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 brew "awscli"
+brew "gh"
+brew "jq"
 brew "mas"
 brew "nvm"
+brew "openjdk"
+brew "pre-commit"
 brew "pyenv"
+brew "rbenv"
 brew "rcm"
+brew "ripgrep"
+brew "watchman"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 cask "adobe-creative-cloud"
+cask "appcleaner"
 cask "discord"
 cask "figma"
 cask "firefox-developer-edition"
+cask "flipper"
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-new-york"
@@ -36,5 +45,9 @@ cask "visual-studio-code"
 mas "1Password 7", id: 1333542190
 mas "CARROT Weather", id: 993487541
 mas "DaisyDisk", id: 411643860
+mas "Dice", id: 1479250666
 mas "Fantastical", id: 975937182
 mas "Momentum", id: 1564329434
+mas "PCalc", id: 403504866
+mas "TestFlight", id: 899247664
+mas "Xcode", id: 497799835
