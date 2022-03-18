@@ -5,13 +5,13 @@
         "revision": "36e0f7a5df44761ccf1901877aaf4ed3a2ff8c06"
       },
       "homebrew/cask": {
-        "revision": "ddec37a5da8b9c06c33e0c4d902960ece8d212e5"
+        "revision": "34e30a343b4b825b149ed8fe1d4655354a9fda0b"
       },
       "homebrew/cask-versions": {
         "revision": "178d3512d515440fc1c65d6eca5d9efd0eaa11f2"
       },
       "homebrew/core": {
-        "revision": "5379f803830aac6d579daee39f762f1bccaa8a00"
+        "revision": "813d3d7b589c04a7f249135794ad73eb4664537e"
       },
       "homebrew/cask-fonts": {
         "revision": "21aa88605da3e0de4df9ad64389b5e1a22d8ee28"
@@ -600,7 +600,7 @@
         }
       },
       "nova": {
-        "version": "8.4",
+        "version": "9",
         "options": {
           "full_name": "nova"
         }
@@ -660,7 +660,7 @@
         }
       },
       "spotify": {
-        "version": "1.1.80.699,c3dac750,9",
+        "version": "1.1.81.604,ccacfc8c,16",
         "options": {
           "full_name": "spotify"
         }
@@ -696,9 +696,15 @@
         }
       },
       "flipper": {
-        "version": "0.138.0",
+        "version": "0.139.0",
         "options": {
           "full_name": "flipper"
+        }
+      },
+      "authy": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "authy"
         }
       }
     },
@@ -746,7 +752,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.4.2",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "5379f803830aac6d579daee39f762f1bccaa8a00",
+        "Homebrew/homebrew-core": "813d3d7b589c04a7f249135794ad73eb4664537e",
         "CLT": "13.3.0.0.1.1645755326",
         "Xcode": "13.3",
         "macOS": "12.3"
