@@ -706,6 +706,12 @@
         "options": {
           "full_name": "authy"
         }
+      },
+      "miniconda": {
+        "version": "py39_4.11.0",
+        "options": {
+          "full_name": "miniconda"
+        }
       }
     },
     "mas": {
