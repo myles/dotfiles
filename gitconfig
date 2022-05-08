@@ -1,13 +1,21 @@
 [user]
 	name = Myles Braithwaite
 	email = me@mylesbraithwaite.com
+
 [color]
 	ui = true
+
 [merge]
 	ff = only
+
 [fetch]
 	prune = true
+
 [rebase]
 	autosquash = true
+
 [push]
 	default = current
+
+[init]
+	defaultBranch = main
