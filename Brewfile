@@ -1,4 +1,5 @@
 tap "facebook/fb"
+tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -9,35 +10,42 @@ brew "awscli"
 brew "boost"
 brew "pcre2"
 brew "glib"
+brew "python@3.9"
 brew "folly"
+brew "edencommon"
 brew "fizz"
 brew "wangle"
 brew "fbthrift"
 brew "fb303"
+brew "libidn2"
 brew "unbound"
 brew "harfbuzz"
 brew "srt"
 brew "tesseract"
 brew "ffmpeg"
+brew "flyctl"
 brew "gh"
 brew "node"
 brew "gitmoji"
 brew "go"
 brew "grpc"
 brew "jq"
+brew "kdoctor"
 brew "krb5"
 brew "mas"
 brew "nvm"
 brew "openjdk"
 brew "pnpm"
-brew "postgresql@14"
+brew "postgresql@14", restart_service: true
 brew "pre-commit"
 brew "pyenv"
 brew "pyinvoke"
 brew "ruby-build"
 brew "rbenv"
 brew "rcm"
+brew "redis"
 brew "ripgrep"
+brew "ruby@2.7"
 brew "rust"
 brew "rustup-init"
 brew "tcl-tk"
@@ -52,6 +60,7 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 brew "facebook/fb/idb-companion"
+brew "heroku/brew/heroku"
 cask "adobe-creative-cloud"
 cask "affinity-designer"
 cask "affinity-photo"
@@ -96,29 +105,22 @@ cask "steam"
 cask "telegram"
 cask "visual-studio-code"
 cask "zulu11"
-mas "1Password 7", id: 1333542190
+mas "1Password for Safari", id: 1569813296
 mas "Affinity Designer", id: 824171161
-mas "Alto's Adventure The Spirit of the Mountain", id: 1576663233
-mas "Bear", id: 1091189122
 mas "CARROT Weather", id: 993487541
 mas "DaisyDisk", id: 411643860
 mas "Dice", id: 1479250666
 mas "Drafts", id: 1435957248
 mas "Fantastical", id: 975937182
-mas "Gibbon", id: 1482634476
 mas "iA Writer", id: 775737590
 mas "Icro", id: 1482657389
-mas "Mini Motorways", id: 1456188526
 mas "Momentum", id: 1564329434
 mas "PCalc", id: 403504866
 mas "Pixelmator Pro", id: 1289583905
-mas "Reeder", id: 1529448980
-mas "Skate City", id: 1470376606
+mas "Steam Link", id: 1246969117
 mas "TestFlight", id: 899247664
-mas "The Lost City", id: 1538650027
 mas "Things", id: 904280696
 mas "Tweetbot", id: 1384080005
 mas "Ulysses", id: 1225570693
-mas "WCF", id: 1466835143
 mas "Xcode", id: 497799835
 mas "xScope", id: 889428659
