@@ -2,9 +2,11 @@
 alias path='echo $PATH | tr -s ":" "\n"'
 
 # Include custom aliases
-if [[ -f ~/.aliases.local ]]
+LOCAL_ALIASES_FILE="$HOME/.aliases.local"
+if [[ -f $LOCAL_ALIASES_FILE ]]
 then
-  source ~/.aliases.local
+  # shellcheck source=/dev/null
+  source "$LOCAL_ALIASES_FILE"
 fi
 
 # Reload zsh's config
