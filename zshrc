@@ -120,7 +120,7 @@ if [ -f "$ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE" ]; then
 fi
 
 # autocomplete
-# brew install zsh-autocomplete
+# brew install zsh-autosuggestions
 export ZSH_AUTOCOMPLETE_SOURCE_FILE="$HOMEBREW_ROOT/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 if [ -f "$ZSH_AUTOCOMPLETE_SOURCE_FILE" ]; then
   source $ZSH_AUTOCOMPLETE_SOURCE_FILE
