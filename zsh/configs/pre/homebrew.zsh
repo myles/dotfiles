@@ -1,8 +1,8 @@
 HOMEBREW_ROOT=""
 
-if type brew &>/dev/null
+if type /opt/homebrew/bin/brew &>/dev/null
 then
-    HOMEBREW_ROOT="$(brew --prefix)"
+    HOMEBREW_ROOT="$(/opt/homebrew/bin/brew --prefix)"
     PATH="$HOMEBREW_ROOT/bin:$PATH"
 
     if [ -d "$HOMEBREW_ROOT/Homebrew/bin" ]; then
