@@ -1,21 +1,20 @@
 HOMEBREW_ROOT=""
 
-if [ -d "/opt/homebrew" ]; then
-    HOMEBREW_ROOT="/opt/homebrew"
+if type brew &>/dev/null
+then
+    HOMEBREW_ROOT="$(brew --prefix)"
     PATH="$HOMEBREW_ROOT/bin:$PATH"
-elif [ -d "/usr/local/Homebrew" ]; then
-    HOMEBREW_ROOT="/usr/local"
-    PATH="$HOMEBREW_ROOT/Homebrew/bin:$HOMEBREW_ROOT/bin:$PATH"
-else
-    HOMEBREW_ROOT=""
-fi
 
-HOMEBREW_ZSH_SITE_FUNCTIONS="$HOMEBREW_ROOT/share/zsh/site-functions"
+    if [ -d "$HOMEBREW_ROOT/Homebrew/bin" ]; then
+        PATH="$HOMEBREW_ROOT/Homebrew/bin:$PATH"
+    fi
 
-if [ -d "$HOMEBREW_ZSH_SITE_FUNCTIONS" ]; then
-    for site_function in "$HOMEBREW_ZSH_SITE_FUNCTIONS"*(N-.); do
-        . $site_function
-    done
+    if [ -d "$HOMEBREW_ROOT/share/zsh/site-functions" ]; then
+        FPATH="$HOMEBREW_ROOT/share/zsh/site-functions:$FPATH"
+
+        autoload -Uz compinit
+        compinit
+    fi
 fi
 
 export -U HOMEBREW_ROOT
