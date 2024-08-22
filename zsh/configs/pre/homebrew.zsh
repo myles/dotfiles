@@ -31,3 +31,4 @@ fi
 
 export -U HOMEBREW_ROOT
 export -U PATH
+export -U FPATH
