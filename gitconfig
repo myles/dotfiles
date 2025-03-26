@@ -30,4 +30,4 @@
 	required = true
 
 [http]
-	cookiefile = ~/.gitcookies
+	cookiefile = /Users/myles/.gitcookies

@@ -21,6 +21,10 @@ then
         PATH="$HOMEBREW_ROOT/Homebrew/bin:$PATH"
     fi
 
+    if [ -d "$HOMEBREW_ROOT/sbin" ]; then
+        PATH="$HOMEBREW_ROOT/sbin:$PATH"
+    fi
+
     if [ -d "$HOMEBREW_ROOT/share/zsh/site-functions" ]; then
         FPATH="$HOMEBREW_ROOT/share/zsh/site-functions:$FPATH"
 
