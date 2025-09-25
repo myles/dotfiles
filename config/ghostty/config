@@ -1,0 +1,4 @@
+window-inherit-font-size = true
+copy-on-select = clipboard
+
+keybind = shift+enter=text:\n
