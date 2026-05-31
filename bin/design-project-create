@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+"""
+design-project-create — quickly scaffold design project folders.
+
+Usage:
+  design-project-create <project-name>
+  design-project-create --client <client-name> <project-name>
+"""
+
+import argparse
+import sys
+from pathlib import Path
+
+ROOT_PATH = Path(
+    "/Users/myles/Library/CloudStorage/ProtonDrive-myles@myles.garden-folder/design-projects"
+)
+PERSONAL_SUBDIRS = ["assets", "working", "exports"]
+CLIENT_SUBDIRS = ["_briefs", "assets", "brand", "print", "illustration", "exports"]
+
+
+def create_project(base: Path, subdirs: list[str], dry_run: bool = False) -> None:
+    if base.exists():
+        print(f"✗ Already exists: {base}")
+        sys.exit(1)
+
+    print(f"Creating: {base}/")
+    for sub in subdirs:
+        folder = base / sub
+        print(f"  + {sub}/")
+        if not dry_run:
+            folder.mkdir(parents=True, exist_ok=True)
+
+    if not dry_run:
+        print("\n✓ Done.")
+    else:
+        print("\n(dry run — nothing written)")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        prog="design-project-create",
+        description="Scaffold a new design project folder.",
+    )
+    parser.add_argument("project", help="Project name")
+    parser.add_argument(
+        "--client", metavar="CLIENT", help="Client name (omit for personal projects)"
+    )
+    parser.add_argument(
+        "--root",
+        metavar="DIR",
+        default=str(ROOT_PATH),
+        help="Root directory (default: current directory)",
+    )
+    parser.add_argument(
+        "--dry-run", action="store_true", help="Preview without creating anything"
+    )
+
+    args = parser.parse_args()
+    root = Path(args.root).expanduser().resolve()
+
+    if args.client:
+        base = root / "clients" / args.client / args.project
+        subdirs = CLIENT_SUBDIRS
+    else:
+        base = root / "personal" / args.project
+        subdirs = PERSONAL_SUBDIRS
+
+    create_project(base, subdirs, dry_run=args.dry_run)
+
+
+if __name__ == "__main__":
+    main()
