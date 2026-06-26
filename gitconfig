@@ -2,7 +2,7 @@
 	path = ~/.gitconfig.local
 
 [user]
-	name = Myles Braithwaite
+	name = myles
 	email = myles@myles.garden
 
 [color]

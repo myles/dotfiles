@@ -2,3 +2,7 @@ window-inherit-font-size = true
 copy-on-select = clipboard
 
 keybind = shift+enter=text:\n
+
+window-width = 110
+window-height = 40
+window-save-state = never
