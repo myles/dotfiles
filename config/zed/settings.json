@@ -7,6 +7,23 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "never"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "never"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    }
+  },
   "soft_wrap": "editor_width",
   "edit_predictions": {
     "provider": "copilot",
