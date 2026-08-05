@@ -1,2 +1,2 @@
 EXCLUDES=".vscode README.md Brewfile Brewfile.lock.json"
-DOTFILES_DIRS="$HOME/.dotfiles $HOME/.dotfiles-local $HOME/.dotfiles-private"
+DOTFILES_DIRS="$HOME/.dotfiles-local $HOME/.dotfiles-private $HOME/.dotfiles"
