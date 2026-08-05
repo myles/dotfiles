@@ -1,1 +1,1 @@
-if which rbenv > /dev/null; then eval "$(rv shell init zsh)"; fi
+if which rv > /dev/null; then eval "$(rv shell init zsh)"; fi
