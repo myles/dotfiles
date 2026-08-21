@@ -7,8 +7,26 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
   "proxy": "",
   "agent": {
+    "dock": "right",
     "favorite_models": [],
     "model_parameters": [],
     "auto_compact": {
@@ -34,7 +52,7 @@
   },
   "soft_wrap": "editor_width",
   "edit_predictions": {
-    "provider": "copilot",
+    "provider": "zed",
   },
   "cli_default_open_behavior": "new_window",
   "disable_ai": false,
