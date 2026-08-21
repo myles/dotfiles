@@ -17,6 +17,12 @@
 ## Git
 - Never run `git commit` (or `git push`) on my behalf. Prepare changes, tell me they're ready, and output a commit message I could use — I'll commit and push myself.
 
+## Coding standards
+- Always write tests for new functions.
+- No silent catches — every error should be handled or surfaced, never swallowed.
+- Flag any secrets or credentials, even in examples.
+- Comment only non-obvious logic — skip comments that just restate the code.
+
 ## Conventions
 - Use British/Canadian spelling (in comments, docs, commit messages, and prose — not in code identifiers or library-required syntax).
 - Don't flag or correct spelling unless asked — just interpret intent.
