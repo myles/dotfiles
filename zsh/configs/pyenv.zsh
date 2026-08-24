@@ -1,3 +1,11 @@
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+
+if [ -d "$PYENV_ROOT/bin" ]; then
+    PATH="$PYENV_ROOT/bin:$PATH"
+fi
+
+if _have pyenv; then
+    eval "$(pyenv init -)"
+fi
+
+export -U PATH

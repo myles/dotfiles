@@ -75,36 +75,41 @@ for function in ~/.zsh/functions/*; do
   source $function
 done
 
-# extra files in ~/.zsh/configs/pre , ~/.zsh/configs , and ~/.zsh/configs/post
-# these are loaded first, second, and third, respectively.
+# Load one tier of ~/.zsh/configs: "pre", "main" (files directly under
+# configs/), or "post". These are separate calls rather than one pass because
+# oh-my-zsh has to be sourced in between — see below.
 _load_settings() {
-  _dir="$1"
-  if [ -d "$_dir" ]; then
-    if [ -d "$_dir/pre" ]; then
-      for config in "$_dir"/pre/*(N-.); do
-        . $config
-      done
-    fi
+  local dir="$1" tier="$2" config
 
-    for config in "$_dir"/**/*(N-.); do
-      case "$config" in
-        "$_dir"/(pre|post)/*|*.zwc)
-          :
-          ;;
-        *)
-          . $config
-          ;;
-      esac
-    done
+  [ -d "$dir" ] || return 0
 
-    if [ -d "$_dir/post" ]; then
-      for config in "$_dir"/post/*(N-.); do
-        . $config
+  case "$tier" in
+    pre|post)
+      for config in "$dir"/$tier/*(N-.); do
+        . "$config"
       done
-    fi
-  fi
+      ;;
+    main)
+      for config in "$dir"/**/*(N-.); do
+        case "$config" in
+          "$dir"/(pre|post)/*|*.zwc) continue ;;
+        esac
+        . "$config"
+      done
+      ;;
+  esac
 }
-_load_settings "$HOME/.zsh/configs"
+
+# "pre" sets up the PATH and FPATH that oh-my-zsh and everything after it rely
+# on. oh-my-zsh then runs compinit and forces `bindkey -e`, so it has to load
+# before "main" and "post" — otherwise it silently discards their keybindings.
+_load_settings "$HOME/.zsh/configs" pre
+
+# activate oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+_load_settings "$HOME/.zsh/configs" main
+_load_settings "$HOME/.zsh/configs" post
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
@@ -112,23 +117,18 @@ _load_settings "$HOME/.zsh/configs"
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
-# syntax highlighting
-# brew install zsh-syntax-highlightin
-export ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE="$HOMEBREW_ROOT/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-if [ -f "$ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE" ]; then
-  source $ZSH_SYSTAX_HIGHLIGHTING_SOURCE_FILE
+# Syntax highlighting and autosuggestions wrap widgets defined by everything
+# else, so they have to be sourced last.
+# brew install zsh-syntax-highlighting
+ZSH_SYNTAX_HIGHLIGHTING_SOURCE_FILE="$HOMEBREW_ROOT/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [ -f "$ZSH_SYNTAX_HIGHLIGHTING_SOURCE_FILE" ]; then
+  source "$ZSH_SYNTAX_HIGHLIGHTING_SOURCE_FILE"
 fi
 
-# autocomplete
 # brew install zsh-autosuggestions
-export ZSH_AUTOCOMPLETE_SOURCE_FILE="$HOMEBREW_ROOT/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-if [ -f "$ZSH_AUTOCOMPLETE_SOURCE_FILE" ]; then
-  source $ZSH_AUTOCOMPLETE_SOURCE_FILE
+ZSH_AUTOSUGGESTIONS_SOURCE_FILE="$HOMEBREW_ROOT/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [ -f "$ZSH_AUTOSUGGESTIONS_SOURCE_FILE" ]; then
+  source "$ZSH_AUTOSUGGESTIONS_SOURCE_FILE"
 fi
-
-# activate oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

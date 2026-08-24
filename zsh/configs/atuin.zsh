@@ -1,1 +1,3 @@
-if which atuin > /dev/null; then eval "$(atuin init zsh)"; fi
+if _have atuin; then
+    eval "$(atuin init zsh)"
+fi

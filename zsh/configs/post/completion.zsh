@@ -1,14 +1,4 @@
-# load our own completion functions
-fpath=(~/.zsh/completion /usr/local/share/zsh/site-functions $fpath)
-
-# completion; use cache if updated within 24h
-autoload -Uz compinit
-if [[ -n $HOME/.zcompdump(#qN.mh+24) ]]; then
-    compinit -d $HOME/.zcompdump;
-else
-    compinit -C;
-fi;
-
-# disable zsh bundled function mtools command mcd
-# which causes a conflict.
+# oh-my-zsh has already run compinit (with its own 20h dump cache) by the time
+# this loads, so all that is left is undoing a conflict: zsh bundles an mtools
+# completion for `mcd`, which shadows our own mcd function.
 compdef -d mcd
