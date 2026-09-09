@@ -5,7 +5,10 @@ if [ -d "$PYENV_ROOT/bin" ]; then
 fi
 
 if _have pyenv; then
-    eval "$(pyenv init -)"
+    # --no-rehash: regenerating the shims costs ~0.3s on every shell
+    # start and `pyenv install` rehashes on its own. The snippet is
+    # cached because generating it costs another ~0.2s.
+    _eval_cached pyenv pyenv init - --no-rehash zsh
 fi
 
 export -U PATH
