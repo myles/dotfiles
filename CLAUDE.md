@@ -8,6 +8,8 @@ A personal dotfiles repo managed by [rcm](https://github.com/thoughtbot/rcm). Ev
 
 `claude/skills/*/SKILL.md` are personal Claude Code skills, linked to `~/.claude/skills/`; they are available in every project once `rcup` has run.
 
+`.claude/skills/*/SKILL.md` are skills scoped to *this* repo — they only load when Claude Code is run from inside it, and they need no `rcup`. rcm ignores dot-prefixed top-level entries, so nothing under `.claude/` is ever symlinked into `$HOME`. Put a skill here when it is only useful against these dotfiles, and in `claude/skills/` when it is useful everywhere.
+
 `claude/CLAUDE.md` is **not** this file: it is the user's global Claude Code preferences, symlinked to `~/.claude/CLAUDE.md`. Changes to it take effect in every project.
 
 ## Commands
