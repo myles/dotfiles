@@ -1,6 +1,3 @@
-[include]
-	path = ~/.gitconfig.local
-
 [user]
 	name = myles
 	email = myles@myles.garden
@@ -30,4 +27,10 @@
 	required = true
 
 [http]
-	cookiefile = /Users/myles/.gitcookies
+	cookiefile = ~/.gitcookies
+
+# Last, so that machine-specific overrides actually win: git inserts an
+# included file where the directive appears, and later values beat
+# earlier ones.
+[include]
+	path = ~/.gitconfig.local

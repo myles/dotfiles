@@ -8,12 +8,14 @@ Usage:
 """
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
-ROOT_PATH = Path(
-    "/Users/myles/Library/CloudStorage/ProtonDrive-myles@myles.garden-folder/design-projects"
-)
+# The projects directory lives in a cloud drive whose path differs per
+# machine, so it comes from the environment rather than being hardcoded
+# here. Export DESIGN_PROJECTS_ROOT from a local shell config.
+ROOT_ENV_VAR = "DESIGN_PROJECTS_ROOT"
 PERSONAL_SUBDIRS = ["assets", "working", "exports"]
 CLIENT_SUBDIRS = ["_briefs", "assets", "brand", "print", "illustration", "exports"]
 
@@ -48,14 +50,20 @@ def main() -> None:
     parser.add_argument(
         "--root",
         metavar="DIR",
-        default=str(ROOT_PATH),
-        help="Root directory (default: current directory)",
+        default=os.environ.get(ROOT_ENV_VAR),
+        help=f"Root directory (default: ${ROOT_ENV_VAR})",
     )
     parser.add_argument(
         "--dry-run", action="store_true", help="Preview without creating anything"
     )
 
     args = parser.parse_args()
+
+    if not args.root:
+        parser.error(
+            f"no projects directory: pass --root or set ${ROOT_ENV_VAR}"
+        )
+
     root = Path(args.root).expanduser().resolve()
 
     if args.client:
