@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A personal dotfiles repo managed by [rcm](https://github.com/thoughtbot/rcm). Every top-level file/directory is symlinked into `$HOME` with a dot prefix: `zshrc` → `~/.zshrc`, `zsh/` → `~/.zsh/`, `bin/` → `~/.bin/`, `config/ghostty/config` → `~/.config/ghostty/config`. Editing a file here edits the live config — there is no build step and no test suite.
 
+`claude/skills/*/SKILL.md` are personal Claude Code skills, linked to `~/.claude/skills/`; they are available in every project once `rcup` has run.
+
 `claude/CLAUDE.md` is **not** this file: it is the user's global Claude Code preferences, symlinked to `~/.claude/CLAUDE.md`. Changes to it take effect in every project.
 
 ## Commands
