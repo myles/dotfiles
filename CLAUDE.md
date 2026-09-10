@@ -23,8 +23,10 @@ A personal dotfiles repo managed by [rcm](https://github.com/thoughtbot/rcm). Ev
 | Verify a shell change | `zsh -i -c exit` (must print nothing) |
 | Time shell startup | `time zsh -i -c exit` |
 | Lint a shell file | `shellcheck zshrc` |
+| Run the commit guards over everything | `pre-commit run --all-files` |
+| Test the commit guard | `python3 .pre-commit-hooks/test_check_forbidden.py` |
 
-`rcup` has no dry-run; `lsrc` is the way to see what is linked. By default it runs `hooks/pre-up` (installs oh-my-zsh if missing) and `hooks/post-up` (vim-plug install/update, `/etc/zshenv` sanity check). Both hit the network, so pass `-K` when you only want the symlinks refreshed.
+`rcup` has no dry-run; `lsrc` is the way to see what is linked. By default it runs `hooks/pre-up` (installs oh-my-zsh if missing) and `hooks/post-up` (vim-plug install/update, `pre-commit install`, `/etc/zshenv` sanity check). Both hit the network, so pass `-K` when you only want the symlinks refreshed.
 
 ## Layering: local → private → public
 
@@ -32,6 +34,20 @@ A personal dotfiles repo managed by [rcm](https://github.com/thoughtbot/rcm). Ev
 
 - `~/.zshrc.local`, `~/.aliases.local`, `~/.gitconfig.local`, `~/.vimrc.local`
 - `~/.bin-local/` is on `PATH` ahead of most entries
+
+## Commit guards (pre-commit)
+
+This repo is public, so `.pre-commit-config.yaml` refuses any commit carrying credentials, internal hostnames, SSH config for real infrastructure, or employer references. Three hooks run: `detect-private-key`, `detect-secrets`, and the local `.pre-commit-hooks/check_forbidden.py`.
+
+`pre-commit install` wires it into `.git/hooks`. `hooks/post-up` does that on every `rcup` and warns loudly when `pre-commit` is not installed — an unguarded clone is the failure mode that matters.
+
+The employer-specific strings are deliberately **not** in this repo: a denylist published alongside the thing it protects announces exactly what it is hiding. They live in `~/.dotfiles-private/.pre-commit-denylist.txt` — one entry per line, either a literal (matched whole-word, case-insensitively) or a `/regex/`, with `#` comments — and `$DOTFILES_DENYLIST` overrides the path. The leading dot keeps rcm from symlinking it into `$HOME`. Add new strings there, never here.
+
+- A missing, unreadable, or empty denylist is a hard failure (exit 2), not a skip. A guard that quietly disables itself is worse than none, because you stop checking by hand.
+- False positive: put `allow-forbidden` in a comment on the line, or `pragma: allowlist secret` for detect-secrets.
+- The scanner and its tests exclude themselves from the scan — they contain the patterns and sample keys on purpose.
+- The generic rules live in the script because none of them are sensitive: RFC 1918 addresses, `.internal`/`.corp`/`.lan`/`.consul` hostnames, `ProxyJump`/`IdentityFile` directives, and vendor key shapes. Note that `.local` is *not* a flagged suffix — this repo's whole layering convention depends on it.
+- Tests are stdlib `unittest`, so they run before anything is installed. Add a case for every rule you add.
 
 ## zsh load order (the part that needs explaining)
 

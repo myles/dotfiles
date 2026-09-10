@@ -33,3 +33,19 @@ rename the file to \`zprofile':
 
 MSG
 fi
+
+# Install this repo's pre-commit hook. It is the only thing keeping
+# secrets, internal hostnames and employer references out of a public
+# repo, so a clone that never ran `pre-commit install` is unguarded.
+repo=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd -P)
+
+if ! command -v pre-commit >/dev/null 2>&1; then
+    cat <<MSG >&2
+Warning: pre-commit is not installed, so nothing stops a secret being
+committed to ${repo}. Fix with:
+  brew install pre-commit && (cd ${repo} && pre-commit install)
+
+MSG
+elif ! (cd "$repo" && pre-commit install >/dev/null); then
+    echo "Warning: \`pre-commit install' failed in ${repo}" >&2
+fi

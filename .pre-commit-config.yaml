@@ -1,0 +1,47 @@
+# Guards for a public repo. Anything unpublishable belongs in
+# ~/.dotfiles-private or ~/.dotfiles-local instead (see rcrc).
+#
+# `pre-commit install` wires this into .git/hooks; hooks/post-up does
+# that for you on `rcup`. rcm ignores dot-prefixed top-level entries, so
+# neither this file nor .pre-commit-hooks/ is symlinked into $HOME.
+default_install_hook_types: [pre-commit]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      # SSH and PGP private keys, by their armour headers. The
+      # scanner's tests assert on sample keys, so that one file is
+      # exempt from every credential scanner here.
+      - id: detect-private-key
+        exclude: ^\.pre-commit-hooks/test_check_forbidden\.py$
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      # Entropy and keyword based credential detection. Escape a false
+      # positive with a `pragma: allowlist secret` comment on the line.
+      - id: detect-secrets
+        exclude: ^\.pre-commit-hooks/test_check_forbidden\.py$
+
+  - repo: local
+    hooks:
+      # Runs once per commit, and aborts the run when the private
+      # denylist is missing, so that reports one error rather than one
+      # per batch of files.
+      - id: check-denylist
+        name: private denylist is present
+        entry: .pre-commit-hooks/check_forbidden.py --check-denylist
+        language: script
+        pass_filenames: false
+        always_run: true
+        fail_fast: true
+
+      - id: check-forbidden
+        name: no secrets, infra, or employer references
+        entry: .pre-commit-hooks/check_forbidden.py
+        language: script
+        types: [text]
+        # The scanner and its tests contain the patterns and sample
+        # values on purpose, so they cannot scan themselves.
+        exclude: ^\.pre-commit-hooks/
