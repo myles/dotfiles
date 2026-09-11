@@ -1,2 +1,2 @@
-EXCLUDES=".pre-commit-config.yaml .pre-commit-hooks CLAUDE.md README.md"
+EXCLUDES=".pre-commit-config.yaml .pre-commit-hooks CLAUDE.md README.md agents"
 DOTFILES_DIRS="$HOME/.dotfiles-local $HOME/.dotfiles-private $HOME/.dotfiles"

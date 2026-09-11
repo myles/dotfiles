@@ -6,11 +6,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A personal dotfiles repo managed by [rcm](https://github.com/thoughtbot/rcm). Every top-level file/directory is symlinked into `$HOME` with a dot prefix: `zshrc` → `~/.zshrc`, `zsh/` → `~/.zsh/`, `bin/` → `~/.bin/`, `config/ghostty/config` → `~/.config/ghostty/config`. Editing a file here edits the live config — there is no build step and no test suite.
 
-`claude/skills/*/SKILL.md` are personal Claude Code skills, linked to `~/.claude/skills/`; they are available in every project once `rcup` has run.
+`.claude/skills/*/SKILL.md` are skills scoped to *this* repo — they only load when Claude Code is run from inside it, and they need no `rcup`. rcm ignores dot-prefixed top-level entries, so nothing under `.claude/` is ever symlinked into `$HOME`. Put a skill here when it is only useful against these dotfiles, and in `agents/skills/` when it is useful everywhere.
 
-`.claude/skills/*/SKILL.md` are skills scoped to *this* repo — they only load when Claude Code is run from inside it, and they need no `rcup`. rcm ignores dot-prefixed top-level entries, so nothing under `.claude/` is ever symlinked into `$HOME`. Put a skill here when it is only useful against these dotfiles, and in `claude/skills/` when it is useful everywhere.
+## Shared agent config: agents/ → claude/ + codex/
 
-`claude/CLAUDE.md` is **not** this file: it is the user's global Claude Code preferences, symlinked to `~/.claude/CLAUDE.md`. Changes to it take effect in every project.
+Claude Code and Codex read the same global instructions and the same personal skills. `agents/` is the single source of truth; the per-harness directories hold nothing but symlinks into it:
+
+```
+agents/AGENTS.md                     ← the user's global preferences
+agents/skills/<name>/SKILL.md        ← personal skills, harness-agnostic
+claude/CLAUDE.md              -> ../agents/AGENTS.md          → ~/.claude/CLAUDE.md
+claude/skills/<name>          -> ../../agents/skills/<name>   → ~/.claude/skills/<name>/
+codex/AGENTS.md               -> ../agents/AGENTS.md          → ~/.codex/AGENTS.md
+codex/skills/<name>           -> ../../agents/skills/<name>   → ~/.codex/skills/<name>/
+```
+
+- `agents/` is in `EXCLUDES` so rcm does not also link it to a pointless `~/.agents/`. The symlinks still resolve — the filesystem follows them, rcm does not.
+- rcm descends *through* an in-repo symlinked directory: it creates a real directory in `$HOME` and symlinks each leaf file, so `~/.claude/skills/foo/SKILL.md` reaches the canonical file in two hops.
+- **Adding a shared skill:** create it under `agents/skills/`, then add one symlink per harness. Both are needed — nothing is discovered automatically.
+- **Harness-only skill:** put a real directory in `claude/skills/` or `codex/skills/` instead. That is the whole reason these are per-skill symlinks and not one symlink for the entire `skills/` directory.
+- `agents/AGENTS.md` is **not** this file: it is the user's global preferences, and a change to it takes effect in every project, in both harnesses. Keep it harness-agnostic — do not mention Claude-specific or Codex-specific tooling in it.
 
 ## Commands
 
