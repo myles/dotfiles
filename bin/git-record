@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+# git-record - Stage and commit one or more files in a single command.
+#
+# Usage:
+#   git-record file1 file2
+#   git-record file1 file2 -m "Fix whatever was broken"
+
+set -euo pipefail
+
+readonly PROGRAM_NAME="git-record"
+
+# Distinct from git's own non-zero exits, so a typo in the invocation is
+# distinguishable from a commit git itself refused.
+readonly EXIT_USAGE=2
+
+usage() {
+  cat <<EOF
+Usage: $PROGRAM_NAME [-m <message>] [-n] <file>...
+
+Stage the given paths and commit only those paths. Anything else
+already in the index is left staged and uncommitted.
+
+Options:
+  -m, --message <msg>  Commit message. Omit to open your editor.
+  -n, --dry-run        Print the git commands, change nothing.
+  -h, --help           Show this help.
+EOF
+}
+
+die() {
+  printf '%s: %s\n' "$PROGRAM_NAME" "$1" >&2
+  exit "${2:-1}"
+}
+
+message=""
+have_message=0
+dry_run=0
+files=()
+
+while (( $# > 0 )); do
+  case "$1" in
+    -m | --message)
+      (( $# >= 2 )) || die "$1 requires an argument" "$EXIT_USAGE"
+      message="$2"
+      have_message=1
+      shift 2
+      ;;
+    --message=*)
+      message="${1#*=}"
+      have_message=1
+      shift
+      ;;
+    -n | --dry-run)
+      dry_run=1
+      shift
+      ;;
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    --)
+      shift
+      files+=("$@")
+      break
+      ;;
+    -*)
+      die "unknown option: $1" "$EXIT_USAGE"
+      ;;
+    *)
+      files+=("$1")
+      shift
+      ;;
+  esac
+done
+
+(( ${#files[@]} > 0 )) || die "no files given; see --help" "$EXIT_USAGE"
+
+git rev-parse --git-dir > /dev/null 2>&1 \
+  || die "not inside a git repository"
+
+for file in "${files[@]}"; do
+  if [[ -e "$file" || -L "$file" ]]; then
+    continue
+  fi
+
+  # A path that is gone from the worktree but still tracked is a
+  # deletion worth recording, not a typo.
+  git ls-files --error-unmatch -- "$file" > /dev/null 2>&1 \
+    || die "no such file: $file"
+done
+
+# Committing with an explicit pathspec keeps the rest of the index out of
+# the commit, so git-record never picks up work staged earlier.
+commit_args=(commit)
+if (( have_message )); then
+  commit_args+=(--message "$message")
+fi
+commit_args+=(-- "${files[@]}")
+
+if (( dry_run )); then
+  printf 'would run: git add -- %s\n' "${files[*]}"
+  printf 'would run: git %s\n' "${commit_args[*]}"
+  exit 0
+fi
+
+git add -- "${files[@]}"
+git "${commit_args[@]}"
