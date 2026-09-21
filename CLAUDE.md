@@ -90,4 +90,4 @@ Rules that fall out of this:
 - Follow any `PATH`/`FPATH` change with `export -U PATH` to dedupe.
 - Comment the *why* for ordering and workaround code; the surrounding files set a high bar for this and it is the main defence against someone "tidying" a load-order fix.
 - Code and comments wrap at 80 characters; Markdown is left unwrapped, one line per paragraph. LF endings and a trailing newline (`.editorconfig`); `gitconfig` uses tabs.
-- `bin/` scripts are user-facing CLIs (Python 3 with type hints, argparse, `--dry-run` support) and land on `PATH` via `~/.bin`.
+- `bin/` scripts are user-facing CLIs and land on `PATH` via `~/.bin`. Python 3 (type hints, argparse) is the default; bash is fine for thin wrappers around another CLI, with `set -euo pipefail` and a hand-rolled arg loop. Either way: a usage comment at the top, `--help`, `--dry-run`, and a non-zero exit distinguishing a bad invocation from a failure in the underlying tool.
