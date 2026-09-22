@@ -50,6 +50,7 @@ Dirty beats everything, so on the default branch with uncommitted changes you re
 3. Prefer the remote-tracking ref over the local branch, and `upstream` over `origin` when both exist. On a fork, `origin/HEAD` points at the fork, whose default branch trails the real base.
 
    ```sh
+   : "${base:?no default branch resolved - ask, do not diff}"
    for r in upstream origin; do
      git show-ref --verify -q "refs/remotes/$r/$base" && { ref="$r/$base"; break; }
    done
@@ -58,41 +59,60 @@ Dirty beats everything, so on the default branch with uncommitted changes you re
 
    A stale local default branch overstates the range by an order of magnitude, so this is not cosmetic. Use three dots: two-dot folds the default branch's own commits into the diff as reversals. Print the ref you chose so the user can override it.
 
-4. Measure the target in bytes and files. Anchor at the repository root first — `git ls-files` emits repo-relative paths, but `xargs cat` resolves them against the shell's working directory.
+   Do not let `ref` reach step 4 empty. `"$ref...HEAD"` with an empty `ref` expands to `...HEAD`, which git reads as `HEAD...HEAD`: zero bytes, **exit 0**, nothing on stderr to catch. The skill then quotes the floor price for a branch of any size and reviews nothing, which is indistinguishable from an honest empty diff. Bail to the ask instead.
+
+4. Measure the target in bytes and files, capturing both into variables step 6 reads. Anchor at the repository root first — `git ls-files` emits repo-relative paths, but `xargs cat` resolves them against the shell's working directory.
+
+   **Run steps 4 to 6 in one shell invocation.** Most harnesses give each command its own shell, so `base`, `ref`, `BYTES` and `FILES` do not survive between tool calls. Assigning them in one call and reading them in the next leaves them empty, and step 6 silently prices the empty string as zero — see the warning there.
 
    ```sh
    cd "$(git rev-parse --show-toplevel)"
    EMPTY_TREE=4b825dc642cb6eb9a060e54bf8d69288fbee4904   # git hash-object -t tree /dev/null
 
    # (a) Uncommitted: tracked delta plus untracked text files
-   { git diff HEAD 2>/dev/null || git diff "$EMPTY_TREE" 2>/dev/null
-     git ls-files -o --exclude-standard -z | xargs -0 grep -Il . 2>/dev/null \
-       | tr '\n' '\0' | xargs -0 cat 2>/dev/null
-   } | wc -c
+   BYTES=$({ git diff HEAD 2>/dev/null || git diff "$EMPTY_TREE" 2>/dev/null
+     git ls-files -o --exclude-standard -z | xargs -0 grep -Il . --null 2>/dev/null \
+       | xargs -0 cat 2>/dev/null
+   } | wc -c)
+   FILES=$({ git diff --name-only HEAD 2>/dev/null
+     git ls-files -o --exclude-standard; } | sort -u | wc -l)
+   MULT=2.5
 
    # (b) Branch
-   git diff --no-ext-diff "$ref...HEAD" 2>/dev/null | wc -c
+   BYTES=$(git diff --no-ext-diff "$ref...HEAD" 2>/dev/null | wc -c)
+   FILES=$(git diff --numstat "$ref...HEAD" 2>/dev/null | wc -l)
+   MULT=2.5
 
    # (c) Whole repository: tracked, text, non-generated
    git grep -I --name-only -e '' -z -- \
-     ':!:*.lock' ':!:*-lock.json' ':!:yarn.lock' ':!:pnpm-lock.yaml' ':!:Cargo.lock' \
-     ':!:poetry.lock' ':!:uv.lock' ':!:composer.lock' ':!:Gemfile.lock' ':!:go.sum' \
+     ':!:*.lock' ':!:*-lock.json' ':!:pnpm-lock.yaml' ':!:go.sum' \
      ':!:*.min.js' ':!:*.min.css' ':!:*.map' ':!:*.snap' ':!:*.svg' \
-     ':!:node_modules/**' ':!:vendor/**' ':!:third_party/**' ':!:.venv/**' \
-     ':!:dist/**' ':!:build/**' ':!:target/**' ':!:__generated__/**' \
      ':!:*.generated.*' ':!:*_pb2.py' ':!:*.pb.go' ':!:*.pot' ':!:*.po' \
-     2>/dev/null | xargs -0 cat 2>/dev/null | wc -c
+     ':(glob,exclude)**/node_modules/**' ':(glob,exclude)**/vendor/**' \
+     ':(glob,exclude)**/third_party/**' ':(glob,exclude)**/.venv/**' \
+     ':(glob,exclude)**/dist/**' ':(glob,exclude)**/build/**' \
+     ':(glob,exclude)**/target/**' ':(glob,exclude)**/__generated__/**' \
+     2>/dev/null > /tmp/review-files.z
+   BYTES=$(xargs -0 cat < /tmp/review-files.z 2>/dev/null | wc -c)
+   FILES=$(tr -dc '\0' < /tmp/review-files.z | wc -c)
+   MULT=1.15
    ```
 
    `git grep -I --name-only -e ''` is the load-bearing part: plain git, no `file(1)`, and it drops binaries *and* symlinks in one pass. Without it, a tracked symlink is counted twice — once as the link, once through its target.
 
-   Three things are not optional. Redirect stderr everywhere, or a `fatal:` gets counted as review content. Use `-z` with `xargs -0` throughout, or a tracked path containing a space breaks the pipeline. Pass `--exclude-standard` when listing untracked files, which is the difference between zero bytes and several hundred megabytes of build output.
+   Directory excludes need `:(glob,exclude)**/dir/**`, not `:!:dir/**`. Plain `:!:` anchors at the repository root, so in a monorepo every nested `vendor/`, `dist/`, `build/` and `target/` is counted and reviewed. Prefixing `**/` without the `:(glob)` magic is worse than leaving it alone: it picks up the nested copies but stops matching the top-level one. Extension patterns like `:!:*.min.js` already match at any depth and are left as they are.
+
+   Four things are not optional. Redirect stderr everywhere, or a `fatal:` gets counted as review content. Use NUL delimiters with `xargs -0` throughout, or a tracked path containing a space breaks the pipeline. Spell it `grep -Il . --null`, not `-Z`: on BSD grep, as shipped with macOS, `-Z` is not `--null` and emits newlines, which silently reintroduces the bug for any path containing one. Pass `--exclude-standard` when listing untracked files, which is the difference between zero bytes and several hundred megabytes of build output.
 
 5. Sanity-check the count before estimating. `--exclude-standard` is necessary but not sufficient: an untracked directory that was never gitignored — a `build/`, a virtualenv — still lands in the total. Count files first, and if untracked files dominate, name the offenders with `git ls-files -o --exclude-standard --directory` and offer to gitignore them rather than review them.
 
 6. Estimate. `mult` is `2.5` for a diff, because the review reads the surrounding code and not only the hunks, and `1.15` for a whole repository, where the files already *are* the context.
 
    ```sh
+   : "${BYTES:?step 4 did not run in this shell}"
+   : "${FILES:?step 4 did not run in this shell}"
+   : "${MULT:?pick 2.5 for a diff, 1.15 for a whole repository}"
+
    awk -v bytes="$BYTES" -v files="$FILES" -v mult="$MULT" 'BEGIN {
      BYTES_PER_TOKEN    = 4        # rough ratio for source code
      TOKENS_PER_FILE    = 1200     # reading 50 files costs more than their diff suggests
@@ -120,7 +140,9 @@ Dirty beats everything, so on the default branch with uncommitted changes you re
    }'
    ```
 
-   Take `files` from `git diff --numstat | wc -l` for a diff, or from the file count in step 4 for a whole repository. The floors matter more than the ceilings: on a three-line diff the real cost is almost entirely harness overhead, so an estimate without `MIN_INPUT_TOKENS` is wrong by two orders of magnitude.
+   The `:?` guards are the point of this block, not decoration. awk coerces an unset variable to `0`, so an empty `BYTES` does not fail — it sends `input` down to `MIN_INPUT_TOKENS` and quotes a whole-repository review of a large project at one pass and a few cents. That is precisely the surprise this skill exists to prevent, arriving with a confident number attached. Fail loudly instead.
+
+   The floors matter more than the ceilings: on a three-line diff the real cost is almost entirely harness overhead, so an estimate without `MIN_INPUT_TOKENS` is wrong by two orders of magnitude.
 
 7. Print the target, the ref it came from, the byte and file counts, and the estimate — then ask to proceed. Every time, for every target. When the estimate is large, lead with the pass count rather than the money: "this needs 98 passes" ends the conversation where a dollar figure invites haggling.
 
