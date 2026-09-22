@@ -126,6 +126,8 @@ Dirty beats everything, so on the default branch with uncommitted changes you re
 
 8. On approval, hand the resolved target to the harness's code-review tooling, passing the target explicitly so it cannot re-derive a different scope, and forwarding any effort level the user asked for. If the harness has no review tooling, review inline: correctness bugs first, then reuse and simplification, reporting each finding as `file:line`, one sentence naming the defect, and a concrete failure scenario. Say which of the two paths you took.
 
+   Search adversarially, report neutrally. Go in assuming the change is broken and that the author was wrong about something, because the default failure of a review is agreement rather than harshness. Do not carry that assumption into the verdict: a finding needs concrete inputs or state that produce a wrong result, and whatever cannot be stated that way is not a finding. "No defects found" remains a legal outcome. Aiming to reject trades a false-negative problem for a false-positive one, which is the worse of the two — a confident invented defect costs more to disprove than a missed one costs to catch later.
+
 ## Rules
 
 - Never `git commit`, `git add`, `git stash`, or `git push`. Resolving scope must not touch the tree — in particular, never stash to get a clean diff.
@@ -135,3 +137,4 @@ Dirty beats everything, so on the default branch with uncommitted changes you re
 - A missing `origin/HEAD` happens after `clone --single-branch` even when a remote exists. Suggest `git remote set-head origin -a`; do not run it, because it hits the network.
 - The rates are list prices and ignore prompt caching, so a second review in the same session costs less than quoted. The constants are calibration, not measurement — say the estimate is order-of-magnitude, and say the time range is the least reliable of the three figures.
 - Flag anything resembling a secret, credential, or customer data the moment you see it in the target, ahead of every other finding.
+- Never pad a review to justify what it cost. Quoting a price first makes a clean result feel like money wasted, and that pressure is this skill's own doing — a review that found nothing and says so is the estimate being spent correctly.
