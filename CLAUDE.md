@@ -23,6 +23,7 @@ codex/skills/<name>           -> ../../agents/skills/<name>   → ~/.codex/skill
 
 - `agents/` is in `EXCLUDES` so rcm does not also link it to a pointless `~/.agents/`. The symlinks still resolve — the filesystem follows them, rcm does not.
 - rcm descends *through* an in-repo symlinked directory: it creates a real directory in `$HOME` and symlinks each leaf file, so `~/.claude/skills/foo/SKILL.md` reaches the canonical file in two hops.
+- **That two-hop shape does not work for Codex.** Codex skips a skill directory whose `SKILL.md` is a symlink — the skill simply never appears in its list, with no warning. It *does* follow a symlinked skill directory. So `hooks/post-up` replaces each `~/.codex/skills/<name>` that rcm built with a single symlink straight to `agents/skills/<name>`, and leaves real directories (Codex-only skills) alone. Claude Code reads either shape, so `~/.claude/skills/` is untouched. If a Codex skill goes missing, the fix is `rcup` — not editing `~/.codex/` by hand.
 - **Adding a shared skill:** create it under `agents/skills/`, then add one symlink per harness. Both are needed — nothing is discovered automatically.
 - **Harness-only skill:** put a real directory in `claude/skills/` or `codex/skills/` instead. That is the whole reason these are per-skill symlinks and not one symlink for the entire `skills/` directory.
 - `agents/AGENTS.md` is **not** this file: it is the user's global preferences, and a change to it takes effect in every project, in both harnesses. Keep it harness-agnostic — do not mention Claude-specific or Codex-specific tooling in it.
@@ -41,7 +42,7 @@ codex/skills/<name>           -> ../../agents/skills/<name>   → ~/.codex/skill
 | Run the commit guards over everything | `pre-commit run --all-files` |
 | Test the commit guard | `python3 .pre-commit-hooks/test_check_forbidden.py` |
 
-`rcup` has no dry-run; `lsrc` is the way to see what is linked. By default it runs `hooks/pre-up` (installs oh-my-zsh if missing) and `hooks/post-up` (vim-plug install/update, `pre-commit install`, `/etc/zshenv` sanity check). Both hit the network, so pass `-K` when you only want the symlinks refreshed.
+`rcup` has no dry-run; `lsrc` is the way to see what is linked. By default it runs `hooks/pre-up` (installs oh-my-zsh if missing) and `hooks/post-up` (vim-plug install/update, `pre-commit install`, Codex skill relinking, `/etc/zshenv` sanity check). Both hit the network, so pass `-K` when you only want the symlinks refreshed.
 
 ## Layering: local → private → public
 
