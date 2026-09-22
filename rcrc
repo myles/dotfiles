@@ -1,2 +1,11 @@
 EXCLUDES=".pre-commit-config.yaml .pre-commit-hooks CLAUDE.md README.md agents"
 DOTFILES_DIRS="$HOME/.dotfiles-local $HOME/.dotfiles-private $HOME/.dotfiles"
+
+# Codex ignores a skill directory whose SKILL.md is a symlink, which is what
+# rcm builds when it descends: a real directory holding a symlinked leaf.
+# Symlinking the skill directory instead leaves SKILL.md a real file at the
+# end of the chain, so both harnesses see it. Descending here was also
+# actively destructive: rcm followed the resulting ~/.codex/skills/<name>
+# back into the repo and replaced agents/skills/<name>/SKILL.md with a
+# symlink to itself.
+SYMLINK_DIRS="codex/skills/*"

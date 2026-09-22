@@ -50,28 +50,6 @@ elif ! (cd "$repo" && pre-commit install >/dev/null); then
     echo "Warning: \`pre-commit install' failed in ${repo}" >&2
 fi
 
-# Codex silently ignores a skill directory whose SKILL.md is a symlink,
-# which is exactly what rcm builds: it descends through codex/skills/<name>
-# and creates a real directory holding a symlinked leaf. It *does* follow a
-# symlinked skill directory, so collapse rcm's two hops into one link. Claude
-# Code reads either shape, so only Codex needs this.
-#
-# A real directory in codex/skills/ is a Codex-only skill and is left alone;
-# only the in-repo symlinks are rewritten.
-for src in "$repo"/codex/skills/*; do
-    [ -L "$src" ] || continue
-
-    target=$(CDPATH= cd -- "$src" 2>/dev/null && pwd -P) || continue
-    dest="$HOME/.codex/skills/$(basename -- "$src")"
-
-    if [ -L "$dest" ]; then
-        [ "$(CDPATH= cd -- "$dest" 2>/dev/null && pwd -P)" = "$target" ] \
-            && continue
-    elif [ ! -L "$dest/SKILL.md" ]; then
-        # Not rcm's handiwork — real files here are not ours to delete.
-        continue
-    fi
-
-    rm -rf "$dest" && ln -s "$target" "$dest" \
-        || echo "Warning: could not relink ${dest}" >&2
-done
+# Codex skill linking is `SYMLINK_DIRS` in rcrc, not a hook. Relinking after
+# the fact meant rcm walked its own output on the next run and clobbered the
+# canonical file in agents/skills/.
