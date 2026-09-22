@@ -75,8 +75,27 @@ done
 
 (( ${#files[@]} > 0 )) || die "no files given; see --help" "$EXIT_USAGE"
 
-git rev-parse --git-dir > /dev/null 2>&1 \
-  || die "not inside a git repository"
+git_dir=$(git rev-parse --git-dir 2>/dev/null) \
+  || die "not inside a git repository" "$EXIT_USAGE"
+
+# `git commit -- <path>` is impossible mid-merge, but `git add` runs first
+# and clears the unmerged index entries, so a git-record that fails here
+# would leave the merge staged and ready to complete with content nobody
+# resolved. Refuse before the index is touched.
+readonly IN_PROGRESS_MARKERS=(
+  MERGE_HEAD:merge
+  CHERRY_PICK_HEAD:cherry-pick
+  REVERT_HEAD:revert
+  rebase-merge:rebase
+  rebase-apply:rebase
+)
+
+for marker in "${IN_PROGRESS_MARKERS[@]}"; do
+  [[ -e "$git_dir/${marker%%:*}" ]] || continue
+
+  die "${marker##*:} in progress; git cannot commit a pathspec now" \
+    "$EXIT_USAGE"
+done
 
 for file in "${files[@]}"; do
   if [[ -e "$file" || -L "$file" ]]; then
@@ -86,7 +105,7 @@ for file in "${files[@]}"; do
   # A path that is gone from the worktree but still tracked is a
   # deletion worth recording, not a typo.
   git ls-files --error-unmatch -- "$file" > /dev/null 2>&1 \
-    || die "no such file: $file"
+    || die "no such file: $file" "$EXIT_USAGE"
 done
 
 # Committing with an explicit pathspec keeps the rest of the index out of
@@ -98,8 +117,10 @@ fi
 commit_args+=(-- "${files[@]}")
 
 if (( dry_run )); then
-  printf 'would run: git add -- %s\n' "${files[*]}"
-  printf 'would run: git %s\n' "${commit_args[*]}"
+  # %q per element, not "${array[*]}" — a path with a space must come back
+  # out as one pasteable argument, not two.
+  printf 'would run: git add --'; printf ' %q' "${files[@]}"; printf '\n'
+  printf 'would run: git';        printf ' %q' "${commit_args[@]}"; printf '\n'
   exit 0
 fi
 
