@@ -15,6 +15,17 @@
 - No superlatives or praise. Don't tell me I'm absolutely right. Cold hard truth.
 - Dry, understated tone.
 
+## Naming
+- Booleans read as an assertion: prefix with `is`, `has`, `can`, or `should`. Good: `isSomethingLoading`, `hasUnsavedChanges`. Bad: `somethingIsLoading`, `unsavedChanges`.
+- Predicate *functions* are the exception: a third-person verb already asserts, so `overlaps(a, b)` and `matches(pattern)` need no prefix. The rule above binds variables and fields.
+- Timestamps take a verb plus the `At` suffix: `startsAt`, `endsAt`, `publishedAt`. Values where only the calendar date matters take the `Date` suffix: `startDate`, `endDate`.
+- Functions are imperative and verb-first: `loadDenylist`, `scanLine`, `createProject` — not `denylistLoader` or `lineScanning`.
+- Constants name their unit or type: `MAX_EXCERPT_CHARS`, `MIN_SECRET_CHARS`, `DENYLIST_FILENAME`, `ROOT_ENV_VAR`. A bare `MAX_EXCERPT` leaves the reader guessing between characters, lines, and bytes.
+- A shared prefix groups a family, and namespaces it in languages with no enum: `EXIT_CLEAN`/`EXIT_FOUND`/`EXIT_MISCONFIGURED`, `DOTFILES_DENYLIST`, `HOMEBREW_ROOT`.
+- An `_` prefix marks something private wherever the language has no visibility modifier: `_have`, `_load_settings`.
+- CLI executables read noun-then-verb so siblings sort together: `design-project-create`, not `create-design-project`.
+- These are name shapes, not literal casing — follow the language's convention (`is_loading`, `starts_at` in Python or Ruby).
+
 ## Code structure
 - Extract recurring or meaningful values into descriptive constants or enums. Keep self-explanatory one-offs inline. Spec-defined values (e.g. HTTP 200 OK) always get a constant.
 - Reduce indentation. Avoid the arrow anti-pattern — use early return and continue.
