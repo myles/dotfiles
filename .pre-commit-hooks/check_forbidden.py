@@ -356,7 +356,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         return EXIT_CLEAN
 
     findings: list[Finding] = []
-    unreadable = False
+    has_unreadable_file = False
 
     for name in args.filenames:
         try:
@@ -366,7 +366,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 f"check-forbidden: cannot scan {name}: {error}",
                 file=sys.stderr,
             )
-            unreadable = True
+            has_unreadable_file = True
             continue
 
         findings.extend(scan_text(name, text, rules))
@@ -375,7 +375,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         report(findings)
         return EXIT_FOUND
 
-    if unreadable:
+    if has_unreadable_file:
         return EXIT_MISCONFIGURED
 
     return EXIT_CLEAN

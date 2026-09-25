@@ -10,7 +10,7 @@ if [ -s "$NVM_ROOT/nvm.sh" ]; then
     fi
 
     # Switch node versions on `cd` whenever the directory carries an .nvmrc.
-    load-nvmrc() {
+    _load_nvmrc() {
         local node_version nvmrc_path nvmrc_node_version
 
         node_version="$(nvm version)"
@@ -31,8 +31,8 @@ if [ -s "$NVM_ROOT/nvm.sh" ]; then
     }
 
     autoload -U add-zsh-hook
-    add-zsh-hook chpwd load-nvmrc
-    load-nvmrc
+    add-zsh-hook chpwd _load_nvmrc
+    _load_nvmrc
 fi
 
 unset NVM_ROOT
